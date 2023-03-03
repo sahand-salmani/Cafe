@@ -1,0 +1,29 @@
+﻿@model Infrastructure.Interns.Commands.CreateInternCommand
+
+<form asp-action="Add" method="post">
+    <label>Name</label>
+    <input asp-for="Name" />
+    <br />
+    <label>Email</label>
+    <input asp-for="Email" />
+    <br />
+    <label>Address</label>
+    <input asp-for="Address" />
+    <br />
+    <label>Position</label>
+    <input asp-for="Position" />
+    <br />
+    <label>Phone</label>
+    <input asp-for="PhoneNumber" />
+    <br />
+    <label>Start</label>
+    <input asp-for="StartsAt" />
+    <br />
+    <label>End</label>
+    <input asp-for="FinishedAt" />
+    <br />
+    <label>Uni</label>
+    <input asp-for="University" />
+    <br />
+    <button type="submit">Add</button>
+</form>

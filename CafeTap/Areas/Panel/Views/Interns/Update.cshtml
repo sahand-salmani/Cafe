@@ -1,0 +1,31 @@
+﻿@model Infrastructure.Common.OperationResult<Infrastructure.Interns.ViewModels.GetInternVm>
+
+<form asp-action="Update" method="post">
+    <input hidden asp-for="@Model.Entity.Id" value="@Model.Entity.Id"/>
+    <label>Name</label>
+    <input asp-for="@Model.Entity.Name"/>
+    <br/>
+    <label>Email</label>
+    <input asp-for="@Model.Entity.Email"/>
+    <br/>
+    <label>Address</label>
+    <input asp-for="@Model.Entity.Address"/>
+    <br/>
+    <label>Position</label>
+    <input asp-for="@Model.Entity.Position"/>
+    <br/>
+    <label>Phone</label>
+    <input asp-for="@Model.Entity.PhoneNumber"/>
+    <br/>
+    <label>Start</label>
+    <input asp-for="@Model.Entity.StartsAt"/>
+    <br/>
+    <label>End</label>
+    <input asp-for="@Model.Entity.FinishedAt"/>
+    <br/>
+    <label>Uni</label>
+    <input asp-for="@Model.Entity.University"/>
+    <br/>
+
+    <button type="submit">Update</button>
+</form>

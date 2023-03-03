@@ -1,0 +1,16 @@
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.runtimeconfig.json
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.runtimeconfig.dev.json
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\Domain.dll
+D:\PrivetProjects\CafeTap\DataAccess\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+D:\PrivetProjects\CafeTap\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.genruntimeconfig.cache

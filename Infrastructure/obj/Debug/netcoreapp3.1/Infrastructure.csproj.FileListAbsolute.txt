@@ -1,0 +1,15 @@
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.AssemblyReference.cache
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+D:\PrivetProjects\CafeTap\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\DataAccess.dll
+D:\PrivetProjects\CafeTap\Infrastructure\bin\Debug\netcoreapp3.1\DataAccess.pdb
