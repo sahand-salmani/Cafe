@@ -54,7 +54,7 @@ namespace Infrastructure.Restaurants.CommandHandlers
                 return result;
             }
 
-            return result.AddError(ErrorMessages.)
+            return result.AddError(ErrorMessages.NotBeingAbleToUpdate);
 
         }
     }

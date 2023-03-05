@@ -86,7 +86,7 @@ namespace CafeTap.Areas.Panel.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var command = DeleteInternCommand.Delete(id);
+            var command = new DeleteInternCommand(id);
             var result = await Mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }

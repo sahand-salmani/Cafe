@@ -4,16 +4,15 @@ using System.Text;
 using Infrastructure.Common;
 using MediatR;
 
-namespace Infrastructure.Interns.Commands
+namespace Infrastructure.Restaurants.Commands
 {
-    public class DeleteInternCommand : IRequest<OperationResult<Unit>>
+    public class DeleteRestaurantCommand : IRequest<OperationResult<Unit>>
     {
         public int Id { get; set; }
 
-        public DeleteInternCommand(int id)
+        public DeleteRestaurantCommand(int id)
         {
             Id = id;
         }
-
     }
 }
