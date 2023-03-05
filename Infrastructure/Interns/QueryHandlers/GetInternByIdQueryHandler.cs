@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Constants;
@@ -7,34 +8,31 @@ using Infrastructure.Common;
 using Infrastructure.Interns.Queries;
 using Infrastructure.Interns.ViewModels;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Interns.QueryHandlers
 {
-    public class GetInternByIdQueryHandler : IRequestHandler<GetInternByIdQuery, OperationResult<GetInternVm>>
+    public class GetInternByIdQueryHandler : IRequestHandler<GetInternByIdQuery, GetInternVm>
     {
-        private readonly IEntity _entity;
+        private readonly DatabaseContext _context;
         private readonly IMapper _mapper;
 
-        public GetInternByIdQueryHandler(IEntity entity,
+        public GetInternByIdQueryHandler(DatabaseContext context,
                                          IMapper mapper)
         {
-            _entity = entity;
+            _context = context;
             _mapper = mapper;
         }
-        public async Task<OperationResult<GetInternVm>> Handle(GetInternByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetInternVm> Handle(GetInternByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = new OperationResult<GetInternVm>();
-
-            var intern = await _entity.Interns.FindAsync(request.Id, cancellationToken);
+            var intern = await _context.Interns.AsNoTracking().SingleOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (intern is null)
             {
-                return result.AddError(ErrorMessages.EntityNotFound);
+                return null;
             }
 
-            result.Entity = _mapper.Map<GetInternVm>(intern);
-
-
+            GetInternVm result = _mapper.Map<GetInternVm>(intern);
             return result;
         }
     }

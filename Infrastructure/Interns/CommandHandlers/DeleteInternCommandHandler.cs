@@ -6,32 +6,33 @@ using DataAccess.Persistence;
 using Infrastructure.Common;
 using Infrastructure.Interns.Commands;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Interns.CommandHandlers
 {
     public class DeleteInternCommandHandler : IRequestHandler<DeleteInternCommand,OperationResult<Unit>>
     {
-        private readonly IEntity _entity;
+        private readonly DatabaseContext _context;
         private readonly IPersistence _persistence;
 
-        public DeleteInternCommandHandler(IEntity entity,
+        public DeleteInternCommandHandler(DatabaseContext context,
                                           IPersistence persistence)
         {
-            _entity = entity;
+            _context = context;
             _persistence = persistence;
         }
         public async Task<OperationResult<Unit>> Handle(DeleteInternCommand request, CancellationToken cancellationToken)
         {
             var result = new OperationResult<Unit>();
 
-            var intern = await _entity.Interns.FindAsync(request.Id, cancellationToken);
+            var intern = await _context.Interns.SingleOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (intern is null)
             {
                 return result.AddError(ErrorMessages.EntityNotFound);
             }
 
-            _entity.Interns.Remove(intern);
+            _context.Interns.Remove(intern);
             var persistenceResult = await _persistence.SaveChangesAsync();
 
             if (persistenceResult == 0)

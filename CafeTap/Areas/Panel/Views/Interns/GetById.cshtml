@@ -1,0 +1,10 @@
+﻿@model Infrastructure.Interns.ViewModels.GetInternVm
+
+
+<h1>
+    @Model.Name
+</h1>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit">Delete</button>
+</form>

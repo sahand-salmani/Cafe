@@ -12,6 +12,7 @@ namespace Infrastructure.Interns.Profiles
             CreateMap<CreateInternVm, CreateInternCommand>().ReverseMap();
             CreateMap<Intern, GetInternVm>().ReverseMap();
             CreateMap<Intern, CreateInternCommand>().ReverseMap();
+            CreateMap<UpdateInternCommand, Intern>().ReverseMap();
         }
     }
 }

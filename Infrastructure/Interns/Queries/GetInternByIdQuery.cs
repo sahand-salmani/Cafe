@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Infrastructure.Interns.Queries
 {
-    public class GetInternByIdQuery : IRequest<OperationResult<GetInternVm>>
+    public class GetInternByIdQuery : IRequest<GetInternVm>
     {
         public int Id { get; set; }
 

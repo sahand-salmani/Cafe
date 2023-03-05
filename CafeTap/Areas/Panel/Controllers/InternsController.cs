@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
+using DataAccess.Pagination;
+using Domain.Models;
+using Infrastructure.Common;
 using Infrastructure.Interns.Commands;
 using Infrastructure.Interns.Queries;
 using Infrastructure.Interns.ViewModels;
@@ -11,12 +11,29 @@ using Microsoft.AspNetCore.Mvc;
 namespace CafeTap.Areas.Panel.Controllers
 {
     [Area("Panel")]
+    [Route("[area]/[controller]/[action]")]
     public class InternsController : MyController
     {
-        public async Task<IActionResult> Index()
+
+        [Route("{page?}/{size?}")]
+        public async Task<IActionResult> Index(int page, int size = 10)
         {
-            var query = GetAllInternsQuery.GetAll(1, 1);
-            return View(await Mediator.Send(query));
+            var query = new GetAllInternsQuery(page, size);
+            PaginatedList<Intern> result = await Mediator.Send(query);
+            return View(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute]int id)
+        {
+            var query = new GetInternByIdQuery(id);
+            var result = await Mediator.Send(query);
+            if (result is null)
+            {
+                //TODO: ADD LATER
+                return View("NotFound");
+            }
+            return View(result);
         }
 
         [HttpGet]
@@ -54,26 +71,28 @@ namespace CafeTap.Areas.Panel.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(int id,GetInternVm model)
         {
-            var query = UpdateInternCommand.Update(id, model);
-            return View(await Mediator.Send(query));
+            var command = UpdateInternCommand.Update(id, model);
+            OperationResult<GetInternVm> result = await Mediator.Send(command);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ErrorHandler();
+            return View(command.GetInternVm);
         }
 
 
-        [HttpDelete]
-        [AutoValidateAntiforgeryToken]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            return null;
+            var command = DeleteInternCommand.Delete(id);
+            var result = await Mediator.Send(command);
+            return RedirectToAction(nameof(Index));
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var query = new GetInternByIdQuery(id);
-            var result = await Mediator.Send(query);
-            return View(result);
-        }
+
 
     }
 }

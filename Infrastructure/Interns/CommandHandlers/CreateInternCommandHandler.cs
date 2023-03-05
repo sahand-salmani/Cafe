@@ -13,7 +13,7 @@ using MediatR;
 
 namespace Infrastructure.Interns.CommandHandlers
 {
-    public class CreateInternCommandHandler : IRequestHandler<CreateInternCommand, OperationResult<GetInternVm>>
+    public class CreateInternCommandHandler : IRequestHandler<CreateInternCommand, OperationResult<int>>
     {
         private readonly DatabaseContext _dbContext;
         private readonly IPersistence _persistence;
@@ -29,30 +29,19 @@ namespace Infrastructure.Interns.CommandHandlers
         }
 
 
-        public async Task<OperationResult<GetInternVm>> Handle(CreateInternCommand request, CancellationToken cancellationToken)
+        public async Task<OperationResult<int>> Handle(CreateInternCommand request, CancellationToken cancellationToken)
         {
-            var result = new OperationResult<GetInternVm>();
+            var result = new OperationResult<int>();
 
-            //var intern = new Intern()
-            //{
-            //    Name = request.Name,
-            //    PhoneNumber = request.PhoneNumber,
-            //    StartsAt = request.StartsAt,
-            //    Email = request.Email,
-            //    Address = request.Address,
-            //    FinishedAt = request.FinishedAt,
-            //    University = request.University,
-            //};
+            var intern = _mapper.Map<Intern>(request);
 
-            var aaa = _mapper.Map<Intern>(request);
-
-            _dbContext.Interns.Add(aaa);
+            await _dbContext.Interns.AddAsync(intern, cancellationToken);
 
             var persistence = await _persistence.SaveChangesAsync();
 
             if (persistence > 0)
             {
-                result.Entity = null;
+                result.Entity = intern.Id;
                 return result;
             }
 

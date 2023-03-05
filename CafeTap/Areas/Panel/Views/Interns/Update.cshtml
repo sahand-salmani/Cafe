@@ -1,30 +1,30 @@
-﻿@model Infrastructure.Common.OperationResult<Infrastructure.Interns.ViewModels.GetInternVm>
+﻿@model Infrastructure.Interns.ViewModels.GetInternVm
 
-<form asp-action="Update" method="post">
-    <input hidden asp-for="@Model.Entity.Id" value="@Model.Entity.Id"/>
+<form asp-action="Update" method="post" asp-route-id="@Model.Id">
+    <input hidden asp-for="@Model.Id" value="@Model.Id"/>
     <label>Name</label>
-    <input asp-for="@Model.Entity.Name"/>
+    <input asp-for="@Model.Name"/>
     <br/>
     <label>Email</label>
-    <input asp-for="@Model.Entity.Email"/>
+    <input asp-for="@Model.Email"/>
     <br/>
     <label>Address</label>
-    <input asp-for="@Model.Entity.Address"/>
+    <input asp-for="@Model.Address"/>
     <br/>
     <label>Position</label>
-    <input asp-for="@Model.Entity.Position"/>
+    <input asp-for="@Model.Position"/>
     <br/>
     <label>Phone</label>
-    <input asp-for="@Model.Entity.PhoneNumber"/>
+    <input asp-for="@Model.PhoneNumber"/>
     <br/>
     <label>Start</label>
-    <input asp-for="@Model.Entity.StartsAt"/>
+    <input asp-for="@Model.StartsAt"/>
     <br/>
     <label>End</label>
-    <input asp-for="@Model.Entity.FinishedAt"/>
+    <input asp-for="@Model.FinishedAt"/>
     <br/>
     <label>Uni</label>
-    <input asp-for="@Model.Entity.University"/>
+    <input asp-for="@Model.University"/>
     <br/>
 
     <button type="submit">Update</button>

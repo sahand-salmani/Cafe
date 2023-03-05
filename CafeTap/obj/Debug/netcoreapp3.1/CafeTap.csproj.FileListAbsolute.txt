@@ -171,3 +171,5 @@ D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\View
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Interns\Index.cshtml.g.cs
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Interns\Update.cshtml.g.cs
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\_ViewImports.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Interns\GetById.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs

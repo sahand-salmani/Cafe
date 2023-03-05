@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Infrastructure.Interns.Commands
 {
-    public class CreateInternCommand : IRequest<OperationResult<GetInternVm>>
+    public class CreateInternCommand : IRequest<OperationResult<int>>
     {
         [MaxLength(255)]
         public string Name { get; set; }

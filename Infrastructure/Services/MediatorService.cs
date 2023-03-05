@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using AutoMapper;
 using Infrastructure.Interns.Profiles;
+using Infrastructure.Restaurants.Profiles;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,6 +22,7 @@ namespace Infrastructure.Services
             var config = new MapperConfiguration(c =>
             {
                 c.AddProfile<InternProfile>();
+                c.AddProfile<RestaurantProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
