@@ -1,6 +1,4 @@
 using System.Reflection;
-using DataAccess.Persistence;
-using Infrastructure.Interns.Commands;
 using Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -27,17 +25,11 @@ namespace CafeTap
             services.AddServicesLifeSpan();
             services.AddDatabaseService(Configuration);
             services.AddAuthorization();
-
-
-
             services.AddResponseCompression();
-
-
             services.AddExtraServices();
             services.AddTransient<IMediator, Mediator>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
-
-
+            services.AddIdentityServices();
 
 
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Constants;
@@ -8,7 +7,6 @@ using DataAccess.Persistence;
 using Domain.Models;
 using Infrastructure.Common;
 using Infrastructure.Interns.Commands;
-using Infrastructure.Interns.ViewModels;
 using MediatR;
 
 namespace Infrastructure.Interns.CommandHandlers

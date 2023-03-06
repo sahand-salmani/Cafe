@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Models;
-using Infrastructure.Interns.Commands;
+using Infrastructure.Restaurants.Commands;
 using Infrastructure.Restaurants.ViewModels;
 
 namespace Infrastructure.Restaurants.Profiles
@@ -9,7 +9,7 @@ namespace Infrastructure.Restaurants.Profiles
     {
         public RestaurantProfile()
         {
-            CreateMap<CreateInternCommand, Restaurant>().ReverseMap();
+            CreateMap<CreateRestaurantCommand, Restaurant>().ReverseMap();
             CreateMap<GetRestaurantVm, Restaurant>().ReverseMap();
         }
     }

@@ -173,3 +173,14 @@ D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\View
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\_ViewImports.cshtml.g.cs
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Interns\GetById.cshtml.g.cs
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Restaurants\Index.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Restaurants\Add.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Restaurants\GetById.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Restaurants\Update.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\CafeTap.MvcApplicationPartsAssemblyInfo.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Dashboard\Index.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LimitlessNavbar.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RoleManagement\Add.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RoleManagement\Edit.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RoleManagement\Index.cshtml.g.cs

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Domain.Common;
 
 namespace Domain.Models
@@ -22,6 +20,8 @@ namespace Domain.Models
         public string PhoneNumber { get; set; }
         [DataType(DataType.Date)]
         public DateTime StartsAt { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FinishedAt { get; set; }
+        public bool IsApprovedForJob { get; set; } = false;
     }
 }

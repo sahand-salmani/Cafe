@@ -1,10 +1,7 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataAccess.Constants;
 using DataAccess.Database;
-using Infrastructure.Common;
 using Infrastructure.Interns.Queries;
 using Infrastructure.Interns.ViewModels;
 using MediatR;

@@ -10,7 +10,6 @@ namespace Infrastructure.Services
         public static IServiceCollection AddDatabaseService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultString")));
-            services.AddTransient<IEntity, DatabaseContext>();
             return services;
         }
     }

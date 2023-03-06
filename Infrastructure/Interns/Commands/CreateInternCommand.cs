@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Infrastructure.Common;
-using Infrastructure.Interns.ViewModels;
 using MediatR;
 
 namespace Infrastructure.Interns.Commands

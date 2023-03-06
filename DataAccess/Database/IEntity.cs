@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Models;
+﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Database
@@ -16,7 +13,7 @@ namespace DataAccess.Database
         public DbSet<Position> Positions { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<Spends> Spends { get; set; }
+        public DbSet<Spend> Spends { get; set; }
         public DbSet<Stant> Stants { get; set; }
     }
 }

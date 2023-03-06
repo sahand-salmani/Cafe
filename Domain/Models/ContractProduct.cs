@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Common;
+﻿using Domain.Common;
 
 namespace Domain.Models
 {
@@ -9,7 +6,6 @@ namespace Domain.Models
     {
         public int ContractId { get; set; }
         public int ProductId { get; set; }
-        public bool IsMonthly { get; set; }
 
         public Contract Contract { get; set; }
         public Product Product { get; set; }

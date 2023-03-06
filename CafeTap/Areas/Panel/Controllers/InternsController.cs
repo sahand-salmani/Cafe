@@ -15,10 +15,12 @@ namespace CafeTap.Areas.Panel.Controllers
     public class InternsController : MyController
     {
 
-        [Route("{page?}/{size?}")]
-        public async Task<IActionResult> Index(int page, int size = 10)
+        [HttpGet]
+        [Route("")]
+        [Route("{page:int:min(1)}")]
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var query = new GetAllInternsQuery(page, size);
+            var query = new GetAllInternsQuery(page, 20);
             PaginatedList<Intern> result = await Mediator.Send(query);
             return View(result);
         }
@@ -64,7 +66,7 @@ namespace CafeTap.Areas.Panel.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var query = GetInternByIdQuery.Get(id);
+            GetInternByIdQuery query = GetInternByIdQuery.Get(id);
             return View(await Mediator.Send(query));
         }
 

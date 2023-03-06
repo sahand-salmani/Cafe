@@ -1,0 +1,14 @@
+﻿@model DataAccess.Pagination.PaginatedList<Restaurant>
+
+<a asp-action="add">Add More</a>
+<br />
+<br />
+<br />
+
+@foreach (var restaurant in Model)
+{
+    <h1>@restaurant.Name</h1>
+    <a asp-action="GetById" asp-route-id="@restaurant.Id">Details</a>
+    <a asp-action="Update" asp-route-id="@restaurant.Id">Edit</a>
+
+}

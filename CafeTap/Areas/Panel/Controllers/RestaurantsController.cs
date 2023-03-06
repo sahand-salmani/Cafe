@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
 using Infrastructure.Restaurants.Commands;
 using Infrastructure.Restaurants.Queries;
+using Infrastructure.Restaurants.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CafeTap.Areas.Panel.Controllers
 {
     [Area("Panel")]
+    [Route("[area]/[controller]/[action]")]
     public class RestaurantsController : MyController
     {
         [HttpGet]
-        public async Task<IActionResult> Index(int page, int size)
+        [Route("")]
+        [Route("{page:int:min(1)}")]
+        public async Task<IActionResult> Index(int page=1)
         {
-            var query = new GetAllRestaurantQuery(page, size);
+            var query = new GetAllRestaurantQuery(page, 20);
             return View(await Mediator.Send(query));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{id:int:min(1)}")]
+        public async Task<IActionResult> GetById(int id)
         {
             var query = new GetRestaurantByIdQuery(id);
 
@@ -35,14 +36,14 @@ namespace CafeTap.Areas.Panel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Add()
         {
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateRestaurantCommand command)
+        public async Task<IActionResult> Add(CreateRestaurantCommand command)
         {
             var result = await Mediator.Send(command);
 
@@ -55,6 +56,38 @@ namespace CafeTap.Areas.Panel.Controllers
             return View(command);
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            GetRestaurantByIdQuery query = new GetRestaurantByIdQuery(id);
+
+            return View(await Mediator.Send(query));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, GetRestaurantVm model)
+        {
+            var command = new UpdateRestaurantCommand(id, model);
+            var result = await Mediator.Send(command);
+            if (!result.Success)
+            {
+                AddError(result.Errors);
+                return View(result.Entity);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteRestaurantCommand(id);
+            var result = await Mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+        }
 
 
     }

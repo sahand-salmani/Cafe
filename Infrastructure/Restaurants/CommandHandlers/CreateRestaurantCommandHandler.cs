@@ -6,12 +6,12 @@ using DataAccess.Database;
 using DataAccess.Persistence;
 using Domain.Models;
 using Infrastructure.Common;
-using Infrastructure.Interns.Commands;
+using Infrastructure.Restaurants.Commands;
 using MediatR;
 
 namespace Infrastructure.Restaurants.CommandHandlers
 {
-    public class CreateRestaurantCommandHandler : IRequestHandler<CreateInternCommand, OperationResult<int>>
+    public class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, OperationResult<int>>
     {
         private readonly DatabaseContext _context;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace Infrastructure.Restaurants.CommandHandlers
             _mapper = mapper;
             _persistence = persistence;
         }
-        public async Task<OperationResult<int>> Handle(CreateInternCommand request, CancellationToken cancellationToken)
+        public async Task<OperationResult<int>> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
         {
             var result = new OperationResult<int>();
 

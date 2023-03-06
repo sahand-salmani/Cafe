@@ -12,7 +12,6 @@ namespace Domain.Models
         public decimal MonthlyPayment { get; set; }
         [Required, Column(TypeName = "decimal(18,2)")]
         public decimal YearlyPayment { get; set; }
-
         public ICollection<ContractProduct> Contracts { get; set; }
 
     }

@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
 using Infrastructure.Common;
-using Infrastructure.Interns.Queries;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CafeTap.Controllers

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Models;
+﻿using Domain.Models;
 using Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccess.Database
 {
     public class DatabaseContext : 
-        IdentityDbContext<ApplicationUser,ApplicationRole, string, IdentityUserClaim<string>, ApplicationUserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>, IEntity
+        IdentityDbContext<ApplicationUser,ApplicationRole, string, IdentityUserClaim<string>, ApplicationUserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -24,8 +21,12 @@ namespace DataAccess.Database
         public DbSet<Position> Positions { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<Spends> Spends { get; set; }
+        public DbSet<Spend> Spends { get; set; }
         public DbSet<Stant> Stants { get; set; }
+        public DbSet<Fail> Fails { get; set; }
+        public DbSet<PrePayment> PrePayments { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,6 +47,8 @@ namespace DataAccess.Database
             builder.Entity<ContractProduct>().HasOne(e => e.Product).WithMany(e => e.Contracts)
                 .HasForeignKey(e => e.ProductId);
 
+            builder.Entity<Restaurant>().HasIndex(e => e.Name).IsUnique();
+            builder.Entity<Position>().HasIndex(e => e.Name).IsUnique();
 
             builder.AddSeedUser();
         }

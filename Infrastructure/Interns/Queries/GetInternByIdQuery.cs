@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Infrastructure.Common;
-using Infrastructure.Interns.ViewModels;
+﻿using Infrastructure.Interns.ViewModels;
 using MediatR;
 
 namespace Infrastructure.Interns.Queries

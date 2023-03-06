@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Compression;
+﻿using System.IO.Compression;
 using System.Reflection;
-using System.Text;
 using AutoMapper;
+using Infrastructure.Employees.Profiles;
 using Infrastructure.Interns.Profiles;
+using Infrastructure.Positions.Profiles;
 using Infrastructure.Restaurants.Profiles;
+using Infrastructure.Roles.Profiles;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -23,6 +23,9 @@ namespace Infrastructure.Services
             {
                 c.AddProfile<InternProfile>();
                 c.AddProfile<RestaurantProfile>();
+                c.AddProfile<PositionProfile>();
+                c.AddProfile<EmployeeProfile>();
+                c.AddProfile<RoleProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

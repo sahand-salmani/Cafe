@@ -11,5 +11,8 @@ namespace Infrastructure.Restaurants.ViewModels
         public string PhoneNumber { get; set; }
         [MaxLength(255)]
         public string PersonInCharge { get; set; }
+
+        [Required, MaxLength(255)]
+        public string Name { get; set; }
     }
 }

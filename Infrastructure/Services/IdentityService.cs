@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataAccess.Database;
 using Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +19,7 @@ namespace Infrastructure.Services
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 0;
                 options.Stores.MaxLengthForKeys = 128;
-            }).AddEntityFrameworkStores<DbContext>()
+            }).AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
             services.AddAuthentication();
             return services;

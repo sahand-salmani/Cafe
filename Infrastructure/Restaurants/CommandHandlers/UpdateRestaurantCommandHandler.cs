@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Constants;
@@ -35,14 +32,14 @@ namespace Infrastructure.Restaurants.CommandHandlers
         {
             var result = new OperationResult<GetRestaurantVm>();
             var restaurant = await _context.Restaurants.AsNoTracking()
-                .SingleOrDefaultAsync(e => e.Id == request.UpdateRestaurantVm.Id, cancellationToken);
+                .SingleOrDefaultAsync(e => e.Id == request.Model.Id, cancellationToken);
 
             if (restaurant is null)
             {
                 return result.AddError(ErrorMessages.EntityNotFound);
             }
 
-            var updated = _mapper.Map<Restaurant>(request.UpdateRestaurantVm);
+            var updated = _mapper.Map<Restaurant>(request.Model);
 
             _context.Restaurants.Update(updated);
 

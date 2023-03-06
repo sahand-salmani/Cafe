@@ -16,6 +16,7 @@ namespace Domain.Models
         public int EmployeeId { get; set; }
         public Restaurant Restaurant { get; set; }
         public Employee Employee { get; set; }
+        public ContractType ContractType { get; set; }
         public ICollection<ContractProduct> ContractProducts { get; set; }
     }
 }
