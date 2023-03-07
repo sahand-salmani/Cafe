@@ -29,7 +29,7 @@ namespace Infrastructure.Positions.CommandHandlers
         {
             var result = new OperationResult<int>();
 
-            var position = _mapper.Map<Position>(result);
+            var position = _mapper.Map<Position>(request);
 
             await _context.Positions.AddAsync(position, cancellationToken);
 

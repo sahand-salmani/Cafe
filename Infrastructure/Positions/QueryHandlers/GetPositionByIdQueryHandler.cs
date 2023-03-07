@@ -22,7 +22,7 @@ namespace Infrastructure.Positions.QueryHandlers
         }
         public async Task<GetPositionVm> Handle(GetPositionByIdQuery request, CancellationToken cancellationToken)
         {
-            var position = await _context.Employees.AsNoTracking().Include(e => e.EmployeePayments)
+            var position = await _context.Positions.AsNoTracking()
                 .SingleOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (position is null)

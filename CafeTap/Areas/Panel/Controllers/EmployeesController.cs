@@ -75,5 +75,56 @@ namespace CafeTap.Areas.Panel.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpGet()]
+        public async Task<IActionResult> Update(int id)
+        {
+            var model = new GetEmployeeToUpdateQuery(id);
+            EditEmployeeVm result = await Mediator.Send(model);
+            var selectListQuery = new GetAllPositionSelectListQuery(model.Id);
+            var selectListResult = await Mediator.Send(selectListQuery);
+            result.SelectList = selectListResult;
+            return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, EditEmployeeVm model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var selectListQuery = new GetAllPositionSelectListQuery(model.Id);
+                var selectListResult = await Mediator.Send(selectListQuery);
+                model.SelectList = selectListResult;
+                return View(model);
+            }
+
+            var command = new EditEmployeeCommand(id, model);
+            var result = await Mediator.Send(command);
+
+            if (!result.Success)
+            {
+                AddError(result.Errors);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteEmployeeCommand(id);
+            var result = await Mediator.Send(command);
+
+            if (!result.Success)
+            {
+                //handle
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using AutoMapper;
 using Infrastructure.Employees.Profiles;
 using Infrastructure.Interns.Profiles;
 using Infrastructure.Positions.Profiles;
+using Infrastructure.Products.Profiles;
 using Infrastructure.Restaurants.Profiles;
 using Infrastructure.Roles.Profiles;
 using MediatR;
@@ -26,6 +27,7 @@ namespace Infrastructure.Services
                 c.AddProfile<PositionProfile>();
                 c.AddProfile<EmployeeProfile>();
                 c.AddProfile<RoleProfile>();
+                c.AddProfile<ProductProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

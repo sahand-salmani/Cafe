@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
 using DataAccess.Pagination;
 using Domain.Models;
 using Infrastructure.Common;
-using Infrastructure.Interns.Commands;
-using Infrastructure.Interns.Queries;
-using Infrastructure.Interns.ViewModels;
 using Infrastructure.Positions.Commands;
 using Infrastructure.Positions.Queries;
 using Infrastructure.Positions.ViewModels;
@@ -75,7 +69,8 @@ namespace CafeTap.Areas.Panel.Controllers
         public async Task<IActionResult> Update(int id)
         {
             GetPositionByIdQuery query = new GetPositionByIdQuery(id);
-            return View(await Mediator.Send(query));
+            GetPositionVm result = await Mediator.Send(query);
+            return View(result);
         }
 
         [HttpPost]

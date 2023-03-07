@@ -15,5 +15,8 @@ namespace Infrastructure.Restaurants.Commands
 
         [Required, MaxLength(255)]
         public string Name { get; set; }
+
+        [Required, MaxLength(255)]
+        public string City { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Infrastructure.Positions.QueryHandlers
         }
         public async Task<PaginatedList<Position>> Handle(GetAllPositionsQuery request, CancellationToken cancellationToken)
         {
-            var positions = _context.Positions.AsNoTracking().OrderByDescending(e => e.CreatedAt);
+            var positions = _context.Positions.Include(e => e.Employees).AsNoTracking().OrderByDescending(e => e.CreatedAt);
 
             return await PaginatedList<Position>.CreateAsync(positions, request.Page, request.Size);
         }

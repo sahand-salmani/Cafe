@@ -15,6 +15,7 @@ namespace Infrastructure.Employees.Profiles
             CreateMap<CreateEmployeeCommand, Employee>().ReverseMap();
             CreateMap<CreateEmployeeVm, CreateEmployeeCommand>().ReverseMap();
             CreateMap<EditEmployeeVm, Employee>().ReverseMap();
+            CreateMap<CreateEmployeeVm, Employee>().ReverseMap();
         }
     }
 }
