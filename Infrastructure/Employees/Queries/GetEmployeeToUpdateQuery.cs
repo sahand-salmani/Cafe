@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Infrastructure.Employees.ViewModels;
+﻿using Infrastructure.Employees.ViewModels;
 using MediatR;
 
 namespace Infrastructure.Employees.Queries

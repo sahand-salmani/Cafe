@@ -100,19 +100,17 @@
 
 
 <ul class="pagination align-self-end">
-    <li class="page-item @prevDisabled"><a href="#" class="page-link">&larr; &nbsp; Prev</a></li>
     @for (int i = 1; i <= Model.TotalPages; i++)
     {
         <td>
             @if (i != Model.PageIndex)
             {
-            <li class="page-item active"><a href="#" class="page-link">@i</a></li>
-        }
-        else
-        {
-            <li class="page-item disabled"><a href="#" class="page-link">@i</a></li>
-        }
-            </td>
-        }
-    <li class="page-item @nextDisabled"><a href="#" class="page-link">Next &nbsp; &rarr;</a></li>
+                <li class="page-item active"><a asp-action="Index" asp-route-page="@i" class="page-link">@i</a></li>
+            }
+            else
+            {
+                <li class="page-item disabled"><a class="page-link">@i</a></li>
+            }
+        </td>
+    }
 </ul>

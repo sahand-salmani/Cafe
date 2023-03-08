@@ -1,7 +1,6 @@
 ﻿using DataAccess.Database;
 using Domain.Users;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Services

@@ -20,7 +20,7 @@ namespace CafeTap.Areas.Panel.Controllers
         [Route("{page:int:min(1)}")]
         public async Task<IActionResult> Index(int page = 1)
         {
-            var query = new GetAllInternsQuery(page, 20);
+            var query = new GetAllInternsQuery(page, 1);
             PaginatedList<Intern> result = await Mediator.Send(query);
             return View(result);
         }
@@ -59,7 +59,7 @@ namespace CafeTap.Areas.Panel.Controllers
                 return View(model);
             }
 
-            return RedirectToAction(nameof(Add));
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -67,21 +67,26 @@ namespace CafeTap.Areas.Panel.Controllers
         public async Task<IActionResult> Update(int id)
         {
             GetInternByIdQuery query = GetInternByIdQuery.Get(id);
-            return View(await Mediator.Send(query));
+            var result = await Mediator.Send(query);
+            return View(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> Update(int id,GetInternVm model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var command = UpdateInternCommand.Update(id, model);
             OperationResult<GetInternVm> result = await Mediator.Send(command);
-            if (result.Success)
+            if (!result.Success)
             {
-                return RedirectToAction(nameof(Index));
+                ErrorHandler();
+                return View(command.GetInternVm);
             }
 
-            ErrorHandler();
-            return View(command.GetInternVm);
+            return RedirectToAction(nameof(Index));
         }
 
 

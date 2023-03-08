@@ -21,6 +21,9 @@ namespace Infrastructure.Interns.Commands
         public string PhoneNumber { get; set; }
         [DataType(DataType.Date)]
         public DateTime StartsAt { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FinishedAt { get; set; }
+
+        public bool IsApprovedForJob { get; set; }
     }
 }

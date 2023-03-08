@@ -1,31 +1,149 @@
 ﻿@model Infrastructure.Interns.Commands.CreateInternCommand
 
-<a asp-action="Index">Index</a>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Add Employee";
+    ViewData["MainTitle"] = "Employee";
+    ViewData["SubTitle"] = "Add";
+}
+@section scripts
+{
 
-<form asp-action="Add" method="post">
-    <label>Name</label>
-    <input asp-for="Name" />
-    <br />
-    <label>Email</label>
-    <input asp-for="Email" />
-    <br />
-    <label>Address</label>
-    <input asp-for="Address" />
-    <br />
-    <label>Position</label>
-    <input asp-for="Position" />
-    <br />
-    <label>Phone</label>
-    <input asp-for="PhoneNumber" />
-    <br />
-    <label>Start</label>
-    <input asp-for="StartsAt" />
-    <br />
-    <label>End</label>
-    <input asp-for="FinishedAt" />
-    <br />
-    <label>Uni</label>
-    <input asp-for="University" />
-    <br />
-    <button type="submit">Add</button>
-</form>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Limitless/global_assets/js/demo_pages/form_inputs.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/form_validation.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/styling/switch.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/uploader_bootstrap.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/form_actions.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/form_checkboxes_radios.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/form_select2.js"></script>
+
+    <link href="~/lib/summernote/summernote-bs5.css" rel="stylesheet" />
+    <script src="~/Limitless/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/editor_summernote.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+    <!-- Theme JS files -->
+    <script src="~/Limitless/global_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/anytime.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/pickadate/picker.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/pickadate/picker.time.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/pickers/pickadate/legacy.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/picker_date.js"></script>
+
+    <script src="~/Limitless/global_assets/js/demo_pages/form_checkboxes_radios.js"></script>
+
+
+}
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Archive Types</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <p class="mb-4">Adding Archive type to the website</p>
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <form asp-action="Add" asp-controller="Interns" asp-area="Panel" method="post" enctype="multipart/form-data">
+            <fieldset class="mb-3">
+                <legend class="text-uppercase font-size-sm font-weight-bold">Archive type Details</legend>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Full Name</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="Name">
+                    </div>
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Position</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="Position">
+                    </div>
+                </div>
+                <span asp-validation-for="Position" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Phone Number</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="PhoneNumber">
+                    </div>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Address</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="Address">
+                    </div>
+                </div>
+                <span asp-validation-for="Address" class="text-danger"></span>
+
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Email</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="Email">
+                    </div>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Start Date</label>
+                    <div class="col-lg-3">
+                        <input type="text" asp-for="StartsAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
+                    </div>
+                </div>
+                <span asp-validation-for="StartsAt" class="text-danger"></span>
+
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Finish Date</label>
+                    <div class="col-lg-3">
+                        <input type="text" asp-for="FinishedAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
+                    </div>
+                </div>
+                <span asp-validation-for="FinishedAt" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Is Approved</label>
+                    <div class="col-lg-3">
+                        <input type="checkbox" asp-for="IsApprovedForJob" class="form-check-input-styled-success" checked data-fouc>
+                    </div>
+                </div>
+                <span asp-validation-for="IsApprovedForJob" class="text-danger"></span>
+
+
+
+                <button type="submit" class="btn bg-blue ml-3">Add<i class="icon-paperplane ml-2"></i></button>
+            </fieldset>
+        </form>
+
+    </div>
+</div>

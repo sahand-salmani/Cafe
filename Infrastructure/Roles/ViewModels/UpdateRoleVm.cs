@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Infrastructure.Roles.ViewModels
+﻿namespace Infrastructure.Roles.ViewModels
 {
     public class UpdateRoleVm
     {

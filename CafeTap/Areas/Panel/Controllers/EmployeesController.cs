@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
-using DataAccess.Pagination;
-using Domain.Models;
 using Infrastructure.Employees.Commands;
 using Infrastructure.Employees.Queries;
 using Infrastructure.Employees.ViewModels;
-using Infrastructure.Interns.Queries;
 using Infrastructure.Positions.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -82,7 +76,7 @@ namespace CafeTap.Areas.Panel.Controllers
         {
             var model = new GetEmployeeToUpdateQuery(id);
             EditEmployeeVm result = await Mediator.Send(model);
-            var selectListQuery = new GetAllPositionSelectListQuery(model.Id);
+            var selectListQuery = new GetAllPositionSelectListQuery(result.PositionId);
             var selectListResult = await Mediator.Send(selectListQuery);
             result.SelectList = selectListResult;
             return View(result);

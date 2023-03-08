@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Models;
 using Infrastructure.Products.Commands;
 using Infrastructure.Products.ViewModels;

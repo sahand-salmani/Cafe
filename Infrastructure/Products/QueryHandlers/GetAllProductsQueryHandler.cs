@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DataAccess.Database;
@@ -23,7 +20,7 @@ namespace Infrastructure.Products.QueryHandlers
         }
         public async Task<PaginatedList<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            var result = _context.Products.AsNoTracking().OrderByDescending(e => e.CreatedAt);
+            var result = _context.Products.Include(e => e.Contracts).AsNoTracking().OrderByDescending(e => e.CreatedAt);
 
             return await PaginatedList<Product>.CreateAsync(result, request.Page, request.Size);
         }

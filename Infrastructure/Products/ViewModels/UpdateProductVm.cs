@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Infrastructure.Common;
-using MediatR;
 
 namespace Infrastructure.Products.ViewModels
 {

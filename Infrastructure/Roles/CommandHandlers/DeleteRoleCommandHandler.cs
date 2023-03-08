@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using DataAccess.Constants;
 using DataAccess.Database;
 using DataAccess.Persistence;
-using Domain.Users;
 using Infrastructure.Common;
 using Infrastructure.Roles.Commands;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Roles.CommandHandlers

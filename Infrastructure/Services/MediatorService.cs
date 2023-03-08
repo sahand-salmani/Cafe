@@ -2,6 +2,7 @@
 using System.Reflection;
 using AutoMapper;
 using Infrastructure.Employees.Profiles;
+using Infrastructure.Fails.Profiles;
 using Infrastructure.Interns.Profiles;
 using Infrastructure.Positions.Profiles;
 using Infrastructure.Products.Profiles;
@@ -28,6 +29,7 @@ namespace Infrastructure.Services
                 c.AddProfile<EmployeeProfile>();
                 c.AddProfile<RoleProfile>();
                 c.AddProfile<ProductProfile>();
+                c.AddProfile<FailProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Pagination;
+﻿using DataAccess.Pagination;
 using Domain.Models;
 using MediatR;
 

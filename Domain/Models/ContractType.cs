@@ -6,7 +6,7 @@ namespace Domain.Models
 {
     public enum ContractType
     {
-        Monthly,
-        Yearly
+        Monthly = 1,
+        Yearly = 2
     }
 }

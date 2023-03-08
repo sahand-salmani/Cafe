@@ -19,6 +19,9 @@ namespace Infrastructure.Interns.ViewModels
         public string PhoneNumber { get; set; }
         [DataType(DataType.Date)]
         public DateTime StartsAt { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FinishedAt { get; set; }
+
+        public bool IsApproved { get; set; }
     }
 }
