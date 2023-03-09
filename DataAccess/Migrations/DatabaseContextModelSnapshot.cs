@@ -41,6 +41,11 @@ namespace DataAccess.Migrations
                     b.Property<bool>("IsPaid")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
@@ -62,12 +67,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("ContractId", "ProductId");
@@ -366,6 +365,39 @@ namespace DataAccess.Migrations
                     b.ToTable("RestaurantContacts");
                 });
 
+            modelBuilder.Entity("Domain.Models.RestaurantMeeting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(4000)")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("Person")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("RestaurantMeetings");
+                });
+
             modelBuilder.Entity("Domain.Models.Spend", b =>
                 {
                     b.Property<int>("Id")
@@ -452,7 +484,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "0f8za25b-t9cb-469f-a165-708677289502",
-                            ConcurrencyStamp = "1e23961f-ae6d-4674-ab02-d2802e42f893",
+                            ConcurrencyStamp = "bee3298a-8499-40c0-a9e2-774ae4580f4e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -527,15 +559,15 @@ namespace DataAccess.Migrations
                         {
                             Id = "0f8fad5b-d9cb-469f-a165-70867728950e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a4b8e77-c611-45cc-9f93-0cf4b03565e9",
+                            ConcurrencyStamp = "223563e4-0ead-4008-8021-dd05b1a270a7",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDwHtBHMOwJf4sVyKuBqF3k2pu4AjwiXtud1GTG0wr6VDSdjkWlfZe94oogr17ITuA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGDTclGtY/ZXZHu+kmya5UtSbiNjaxLJAInApQ6BFx8BKFAUjXiSbDh08fFtB8ZuPw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a49e1451-e034-428c-9046-381406a8e1a8",
+                            SecurityStamp = "ae7c556c-227f-4268-aa28-36defa8fc38a",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -736,6 +768,15 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Domain.Models.Restaurant", "Restaurant")
                         .WithMany("RestaurantContacts")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.RestaurantMeeting", b =>
+                {
+                    b.HasOne("Domain.Models.Restaurant", "Restaurant")
+                        .WithMany("RestaurantMeetings")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

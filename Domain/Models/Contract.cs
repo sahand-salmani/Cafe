@@ -7,9 +7,11 @@ namespace Domain.Models
 {
     public class Contract : BaseEntity
     {
-        [Required, DataType(DataType.DateTime)]
+        [Required, MaxLength(255)]
+        public string Name { get; set; }
+        [Required, DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
-        [Required, DataType(DataType.DateTime)]
+        [Required, DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         public bool IsPaid { get; set; } = false;
         public int RestaurantId { get; set; }

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Infrastructure.Contracts.Commands
 {
-    class CreateContractCommand : IRequest<OperationResult<int>>
+    public class CreateContractCommand : IRequest<OperationResult<int>>
     {
         public CreateContractCommand(CreateContractVm model)
         {

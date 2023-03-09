@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CafeTap.Areas.Panel.Controllers
 {
     [Area("panel")]
+    [Route("[area]/[controller]/[action]")]
     public class RestaurantContactsController : MyController
     {
         [HttpGet]

@@ -26,6 +26,7 @@ namespace DataAccess.Database
         public DbSet<Fail> Fails { get; set; }
         public DbSet<PrePayment> PrePayments { get; set; }
         public DbSet<RestaurantContact> RestaurantContacts { get; set; }
+        public DbSet<RestaurantMeeting> RestaurantMeetings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

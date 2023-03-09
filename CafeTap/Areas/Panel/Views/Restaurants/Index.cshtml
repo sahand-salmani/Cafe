@@ -1,23 +1,191 @@
 ﻿@model DataAccess.Pagination.PaginatedList<Restaurant>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Restaurants list";
+    ViewData["MainTitle"] = "Restaurants Types";
+    ViewData["SubTitle"] = "List";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
-<a asp-action="add">Add More</a>
-<br />
-<br />
-<br />
+@section scripts
+{
+    <script src="~/Limitless/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/components_buttons.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/datatables_basic.js"></script>
+}
+<partial name="_Messages" />
+@*<partial name="_ArchiveTypeHeader" />*@
+
+
+
+
 
 @foreach (var restaurant in Model)
 {
-    <h1>@restaurant.Name</h1>
-    foreach (var resContacts in restaurant.RestaurantContacts)
-    {
-        <h2>@resContacts.Name</h2>
-        <h2>@resContacts.Position</h2>
-        <h2>@resContacts.PhoneNumber</h2>
-        <hr/>
-    }
-    <a asp-action="Add" asp-controller="RestaurantContacts" asp-route-id="@restaurant.Id">Add Contact</a>
-    <a asp-action="GetById" asp-route-id="@restaurant.Id">Details</a>
-    <a asp-action="Update" asp-route-id="@restaurant.Id">Edit</a>
-    <hr/>
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Restaurants</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <strong class="h1">Restaurant: @restaurant.Name</strong>
+        </div>
+        <div class="btn-group col-md-1">
+            <button type="button" class="btn bg-purple-300 btn-icon dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-link"></i>
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-right">
+                <a asp-controller="Contracts" asp-action="Add" asp-route-id="@restaurant.Id" class="dropdown-item"><i class="icon-add"></i> Add new contract</a>
+                <a asp-controller="ArchiveTypes" asp-action="Subjects" asp-area="Panel" asp-route-id="@restaurant.Id" asp-route-page="1" class="dropdown-item"><i class="icon-folder-search"></i> Restaurant Details</a>
+                <a asp-controller="ArchiveTypes" asp-action="Delete" asp-area="Panel" asp-route-id="@restaurant.Id" class="dropdown-item"><i class="icon-eraser"></i> Delete</a>
+            </div>
+
+
+        </div>
+
+
+
+        <table class="table datatable-basic">
+            <thead>
+                <tr>
+                    <th class="w-25">Name</th>
+                    <th class="w-25">Started At</th>
+                    <th class="w-25">End At</th>
+                    <th class="w-25">Employee</th>
+                    <th class="text-center w-25">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contract in restaurant.Contract)
+                {
+
+                    <tr>
+                        <td>@contract.Name</td>
+                        <td>@contract.StartDate.ToString("d")</td>
+                        <td>@contract.EndDate.ToString("d")</td>
+                        <td>@contract.Employee.FullName</td>
+                        @*@if (archiveType.IsPublished)
+                            {
+                                <td><span class="badge badge-success">Published</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badge badge-danger">Hidden</span></td>
+                            }*@
+                        <td class="text-center">
+                            <div class="list-icons">
+                                <div class="dropdown">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a asp-controller="ArchiveTypeDetails" asp-action="Edit" asp-route-archiveDetailId="@contract.Id" class="dropdown-item"><i class="icon-pencil"></i>Edit</a>
+                                        <a data-toggle="modal" data-target="#modal_theme_danger_@contract.Id" class="dropdown-item"><i class="icon-eraser3"></i>Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 }
+
+
+
+
+
+@foreach (var restaurant in Model)
+{
+    @foreach (var contract in restaurant.Contract)
+    {
+        <div id="modal_theme_danger_@contract.Id" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h6 class="modal-title">Deleting Archive type @contract.Name</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <h6 class="font-weight-semibold">Important Note!!!</h6>
+                        <p>You are about to delete the Archive type that you have chosen. @contract.Name is the one you are trying to delete. Remember if you have any related data such as archive details or any file related to this archive you can not delete it. If you insist on deleting it you must remove all related data then you can try to delete it.</p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <form asp-action="Delete" asp-controller="ArchiveTypeDetails" asp-area="Panel" asp-route-id="@contract.Id" method="post">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn bg-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+<ul class="pagination align-self-end">
+    <li class="page-item @prevDisabled"><a href="#" class="page-link">&larr; &nbsp; Prev</a></li>
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        <td>
+            @if (i != Model.PageIndex)
+            {
+            <li class="page-item active"><a href="#" class="page-link">@i</a></li>
+        }
+        else
+        {
+            <li class="page-item disabled"><a href="#" class="page-link">@i</a></li>
+        }
+            </td>
+        }
+    <li class="page-item @nextDisabled"><a href="#" class="page-link">Next &nbsp; &rarr;</a></li>
+</ul>
+
+
+<script type="text/javascript">
+    $(document).ready(() => {
+        $('div').remove('.dataTables_paginate');
+        $('div').remove('.dataTables_length');
+        $('div').remove('.datatable-header');
+    })
+</script>
+
+
+@*@model DataAccess.Pagination.PaginatedList<Restaurant>
+
+    <a asp-action="add">Add More</a>
+    <br />
+    <br />
+    <br />
+
+    @foreach (var restaurant in Model)
+    {
+        <h1>@restaurant.Name</h1>
+        foreach (var resContacts in restaurant.RestaurantContacts)
+        {
+            <h2>@resContacts.Name</h2>
+            <h2>@resContacts.Position</h2>
+            <h2>@resContacts.PhoneNumber</h2>
+            <hr/>
+        }
+        <a asp-action="Add" asp-controller="RestaurantContacts" asp-route-id="@restaurant.Id">Add Contact</a>
+        <a asp-action="GetById" asp-route-id="@restaurant.Id">Details</a>
+        <a asp-action="Update" asp-route-id="@restaurant.Id">Edit</a>
+        <hr/>
+
+    }*@

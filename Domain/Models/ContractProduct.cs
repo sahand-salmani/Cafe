@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class ContractProduct : BaseEntity
+    public class ContractProduct
     {
         public int ContractId { get; set; }
         public int ProductId { get; set; }

@@ -18,8 +18,7 @@ namespace Domain.Models
         public string City { get; set; }
         public ICollection<Stant> Stants { get; set; }
         public ICollection<RestaurantContact> RestaurantContacts { get; set; }
+        public ICollection<RestaurantMeeting> RestaurantMeetings { get; set; }
 
-
-        // add ressturant meetings dates
     }
 }
