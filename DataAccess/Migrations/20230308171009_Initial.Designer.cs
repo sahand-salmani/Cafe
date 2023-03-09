@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230305104458_ChangesNew")]
-    partial class ChangesNew
+    [Migration("20230308171009_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContractType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -50,8 +53,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("RestaurantId")
-                        .IsUnique();
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("Contracts");
                 });
@@ -69,9 +71,6 @@ namespace DataAccess.Migrations
 
                     b.Property<int>("Id")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsMonthly")
-                        .HasColumnType("bit");
 
                     b.HasKey("ContractId", "ProductId");
 
@@ -142,6 +141,37 @@ namespace DataAccess.Migrations
                     b.ToTable("EmployeePayments");
                 });
 
+            modelBuilder.Entity("Domain.Models.Fail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("HappenedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(2080)")
+                        .HasMaxLength(2080);
+
+                    b.Property<string>("Restaurant")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Fails");
+                });
+
             modelBuilder.Entity("Domain.Models.Intern", b =>
                 {
                     b.Property<int>("Id")
@@ -162,6 +192,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime>("FinishedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsApprovedForJob")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(255)")
@@ -198,11 +231,46 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
                     b.ToTable("Positions");
+                });
+
+            modelBuilder.Entity("Domain.Models.PrePayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(2080)")
+                        .HasMaxLength(2080);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("PrePayments");
                 });
 
             modelBuilder.Entity("Domain.Models.Product", b =>
@@ -241,15 +309,16 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(1080)")
                         .HasMaxLength(1080);
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("PersonInCharge")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
@@ -260,7 +329,43 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("Domain.Models.RestaurantContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("RestaurantContacts");
                 });
 
             modelBuilder.Entity("Domain.Models.Spend", b =>
@@ -349,7 +454,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "0f8za25b-t9cb-469f-a165-708677289502",
-                            ConcurrencyStamp = "7bbc8bf7-f773-4dc9-8b02-c0d81585cbeb",
+                            ConcurrencyStamp = "1e23961f-ae6d-4674-ab02-d2802e42f893",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -424,15 +529,15 @@ namespace DataAccess.Migrations
                         {
                             Id = "0f8fad5b-d9cb-469f-a165-70867728950e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e018575-0d77-47be-b4f8-58c31b0fe365",
+                            ConcurrencyStamp = "4a4b8e77-c611-45cc-9f93-0cf4b03565e9",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAECN4YDSiqczAgyOd80aXbtBa5jwIu4fOFMCO+kiBqheUuFEmIvV+4vSWjfeFEeqhow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDwHtBHMOwJf4sVyKuBqF3k2pu4AjwiXtud1GTG0wr6VDSdjkWlfZe94oogr17ITuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3e1cc4c0-b1c7-4176-a07c-2691cfb80f8c",
+                            SecurityStamp = "a49e1451-e034-428c-9046-381406a8e1a8",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -521,10 +626,12 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -546,10 +653,12 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -568,8 +677,8 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Models.Restaurant", "Restaurant")
-                        .WithOne("Contract")
-                        .HasForeignKey("Domain.Models.Contract", "RestaurantId")
+                        .WithMany("Contract")
+                        .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -603,6 +712,33 @@ namespace DataAccess.Migrations
                     b.HasOne("Domain.Models.Employee", "Employee")
                         .WithMany("EmployeePayments")
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.Fail", b =>
+                {
+                    b.HasOne("Domain.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.PrePayment", b =>
+                {
+                    b.HasOne("Domain.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.RestaurantContact", b =>
+                {
+                    b.HasOne("Domain.Models.Restaurant", "Restaurant")
+                        .WithMany("RestaurantContacts")
+                        .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

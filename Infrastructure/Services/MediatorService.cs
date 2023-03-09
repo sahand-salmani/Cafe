@@ -6,6 +6,7 @@ using Infrastructure.Fails.Profiles;
 using Infrastructure.Interns.Profiles;
 using Infrastructure.Positions.Profiles;
 using Infrastructure.Products.Profiles;
+using Infrastructure.RestaurantContacts.Profiles;
 using Infrastructure.Restaurants.Profiles;
 using Infrastructure.Roles.Profiles;
 using MediatR;
@@ -30,6 +31,7 @@ namespace Infrastructure.Services
                 c.AddProfile<RoleProfile>();
                 c.AddProfile<ProductProfile>();
                 c.AddProfile<FailProfile>();
+                c.AddProfile<RestaurantContactProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

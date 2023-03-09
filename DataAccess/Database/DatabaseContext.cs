@@ -25,17 +25,7 @@ namespace DataAccess.Database
         public DbSet<Stant> Stants { get; set; }
         public DbSet<Fail> Fails { get; set; }
         public DbSet<PrePayment> PrePayments { get; set; }
-
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            if (!optionsBuilder.IsConfigured)
-            {
-                //optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            }
-        }
+        public DbSet<RestaurantContact> RestaurantContacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

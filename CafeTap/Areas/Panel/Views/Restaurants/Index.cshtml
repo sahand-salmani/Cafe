@@ -8,7 +8,16 @@
 @foreach (var restaurant in Model)
 {
     <h1>@restaurant.Name</h1>
+    foreach (var resContacts in restaurant.RestaurantContacts)
+    {
+        <h2>@resContacts.Name</h2>
+        <h2>@resContacts.Position</h2>
+        <h2>@resContacts.PhoneNumber</h2>
+        <hr/>
+    }
+    <a asp-action="Add" asp-controller="RestaurantContacts" asp-route-id="@restaurant.Id">Add Contact</a>
     <a asp-action="GetById" asp-route-id="@restaurant.Id">Details</a>
     <a asp-action="Update" asp-route-id="@restaurant.Id">Edit</a>
+    <hr/>
 
 }

@@ -13,10 +13,13 @@ namespace Domain.Models
         [Required, MaxLength(55), DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         [MaxLength(255)]
-        public string PersonInCharge { get; set; }
         public ICollection<Contract> Contract { get; set; }
         [MaxLength(255), Required]
         public string City { get; set; }
         public ICollection<Stant> Stants { get; set; }
+        public ICollection<RestaurantContact> RestaurantContacts { get; set; }
+
+
+        // add ressturant meetings dates
     }
 }

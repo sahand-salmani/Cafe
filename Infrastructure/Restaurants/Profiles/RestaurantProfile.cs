@@ -11,6 +11,7 @@ namespace Infrastructure.Restaurants.Profiles
         {
             CreateMap<CreateRestaurantCommand, Restaurant>().ReverseMap();
             CreateMap<GetRestaurantVm, Restaurant>().ReverseMap();
+            CreateMap<CreateRestaurantVm, Restaurant>().ReverseMap();
         }
     }
 }

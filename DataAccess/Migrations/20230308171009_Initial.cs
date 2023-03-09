@@ -58,7 +58,10 @@ namespace DataAccess.Migrations
                     Address = table.Column<string>(maxLength: 255, nullable: true),
                     Position = table.Column<string>(maxLength: 255, nullable: true),
                     University = table.Column<string>(maxLength: 255, nullable: true),
-                    PhoneNumber = table.Column<string>(maxLength: 255, nullable: true)
+                    PhoneNumber = table.Column<string>(maxLength: 255, nullable: true),
+                    StartsAt = table.Column<DateTime>(nullable: false),
+                    FinishedAt = table.Column<DateTime>(nullable: false),
+                    IsApprovedForJob = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,7 +75,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,9 +105,10 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(maxLength: 255, nullable: false),
                     Address = table.Column<string>(maxLength: 1080, nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 55, nullable: false),
-                    PersonInCharge = table.Column<string>(maxLength: 255, nullable: true)
+                    City = table.Column<string>(maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,8 +178,8 @@ namespace DataAccess.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -233,8 +237,8 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -273,6 +277,29 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RestaurantContacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(maxLength: 255, nullable: false),
+                    Position = table.Column<string>(maxLength: 255, nullable: true),
+                    PhoneNumber = table.Column<string>(maxLength: 255, nullable: true),
+                    RestaurantId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RestaurantContacts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RestaurantContacts_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
+                        principalTable: "Restaurants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Stants",
                 columns: table => new
                 {
@@ -305,7 +332,8 @@ namespace DataAccess.Migrations
                     EndDate = table.Column<DateTime>(nullable: false),
                     IsPaid = table.Column<bool>(nullable: false),
                     RestaurantId = table.Column<int>(nullable: false),
-                    EmployeeId = table.Column<int>(nullable: false)
+                    EmployeeId = table.Column<int>(nullable: false),
+                    ContractType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -347,14 +375,59 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Fails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    Restaurant = table.Column<string>(maxLength: 255, nullable: true),
+                    Note = table.Column<string>(maxLength: 2080, nullable: true),
+                    HappenedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fails_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PrePayments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Note = table.Column<string>(maxLength: 2080, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PrePayments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PrePayments_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ContractProducts",
                 columns: table => new
                 {
                     ContractId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    IsMonthly = table.Column<bool>(nullable: false)
+                    CreatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -376,12 +449,12 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0f8za25b-t9cb-469f-a165-708677289502", "01ca6144-0fb1-4d3c-bc6b-8a03f100af8f", "Admin", "ADMIN" });
+                values: new object[] { "0f8za25b-t9cb-469f-a165-708677289502", "1e23961f-ae6d-4674-ab02-d2802e42f893", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "0f8fad5b-d9cb-469f-a165-70867728950e", 0, "344f2f61-67b4-4f31-a19a-bf45f0af6239", "Admin@gmail.com", false, false, null, "admin@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEEvNwHF1lcYWEpR+nb1wC2DicQ/RBDnsU1eb3E1XHjSqP10FAHAaNBNsGmqs3ui0mw==", null, false, "0406d501-cd55-4dc6-a698-b9b17bd1fc0c", false, "Admin" });
+                values: new object[] { "0f8fad5b-d9cb-469f-a165-70867728950e", 0, "4a4b8e77-c611-45cc-9f93-0cf4b03565e9", "Admin@gmail.com", false, false, null, "admin@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEDwHtBHMOwJf4sVyKuBqF3k2pu4AjwiXtud1GTG0wr6VDSdjkWlfZe94oogr17ITuA==", null, false, "a49e1451-e034-428c-9046-381406a8e1a8", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -450,8 +523,7 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Contracts_RestaurantId",
                 table: "Contracts",
-                column: "RestaurantId",
-                unique: true);
+                column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeePayments_EmployeeId",
@@ -462,6 +534,34 @@ namespace DataAccess.Migrations
                 name: "IX_Employees_PositionId",
                 table: "Employees",
                 column: "PositionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fails_EmployeeId",
+                table: "Fails",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Positions_Name",
+                table: "Positions",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrePayments_EmployeeId",
+                table: "PrePayments",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RestaurantContacts_RestaurantId",
+                table: "RestaurantContacts",
+                column: "RestaurantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Restaurants_Name",
+                table: "Restaurants",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stants_RestaurantId",
@@ -493,7 +593,16 @@ namespace DataAccess.Migrations
                 name: "EmployeePayments");
 
             migrationBuilder.DropTable(
+                name: "Fails");
+
+            migrationBuilder.DropTable(
                 name: "Interns");
+
+            migrationBuilder.DropTable(
+                name: "PrePayments");
+
+            migrationBuilder.DropTable(
+                name: "RestaurantContacts");
 
             migrationBuilder.DropTable(
                 name: "Spends");

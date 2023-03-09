@@ -21,7 +21,7 @@ namespace Infrastructure.Restaurants.QueryHandlers
         public async Task<PaginatedList<Restaurant>> Handle(GetAllRestaurantQuery request, CancellationToken cancellationToken)
         {
             var restaurants = _context.Restaurants
-                .AsNoTracking()
+                .AsNoTracking().Include(c => c.RestaurantContacts)
                 .OrderByDescending(e => e.CreatedAt);
             var paginated = await PaginatedList<Restaurant>.CreateAsync(restaurants, request.Page, request.Size);
 

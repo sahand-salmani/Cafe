@@ -43,8 +43,9 @@ namespace CafeTap.Areas.Panel.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Add(CreateRestaurantCommand command)
+        public async Task<IActionResult> Add(CreateRestaurantInDetailsVm model)
         {
+            var command = new CreateRestaurantCommand(model);
             var result = await Mediator.Send(command);
 
             if (result.Success)

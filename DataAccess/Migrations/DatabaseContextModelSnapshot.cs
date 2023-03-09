@@ -320,10 +320,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("PersonInCharge")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(55)")
@@ -335,6 +331,39 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("Domain.Models.RestaurantContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("RestaurantContacts");
                 });
 
             modelBuilder.Entity("Domain.Models.Spend", b =>
@@ -423,7 +452,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "0f8za25b-t9cb-469f-a165-708677289502",
-                            ConcurrencyStamp = "9fe069f4-1684-4847-880b-ed2061b09d25",
+                            ConcurrencyStamp = "1e23961f-ae6d-4674-ab02-d2802e42f893",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -498,15 +527,15 @@ namespace DataAccess.Migrations
                         {
                             Id = "0f8fad5b-d9cb-469f-a165-70867728950e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4b2df9b-67a6-4e46-8e6a-168833cf23d4",
+                            ConcurrencyStamp = "4a4b8e77-c611-45cc-9f93-0cf4b03565e9",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELvx/fRKk3nmXfhniOwjohZBgR+jUuBG2aTOklyXfJhrEvTNKtcZvdGw8/MahKn2qw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDwHtBHMOwJf4sVyKuBqF3k2pu4AjwiXtud1GTG0wr6VDSdjkWlfZe94oogr17ITuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a0d14c2-6406-42f4-ab93-6240ed0e884e",
+                            SecurityStamp = "a49e1451-e034-428c-9046-381406a8e1a8",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -595,10 +624,12 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -620,10 +651,12 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -695,6 +728,15 @@ namespace DataAccess.Migrations
                     b.HasOne("Domain.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.RestaurantContact", b =>
+                {
+                    b.HasOne("Domain.Models.Restaurant", "Restaurant")
+                        .WithMany("RestaurantContacts")
+                        .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
