@@ -398,6 +398,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("HappensAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
@@ -507,7 +510,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "0f8za25b-t9cb-469f-a165-708677289502",
-                            ConcurrencyStamp = "efb8a8b9-8baf-4437-bedf-314cbef66fd6",
+                            ConcurrencyStamp = "0b4dfb3d-6275-4a1d-a69a-babec4383f3a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -582,15 +585,15 @@ namespace DataAccess.Migrations
                         {
                             Id = "0f8fad5b-d9cb-469f-a165-70867728950e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a432747a-b7b0-4ae0-9f9a-070abe1007d9",
+                            ConcurrencyStamp = "d5d497e6-9a93-430d-8bc5-6c85fdf5f57b",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAECRvIaa2fzVwlLGnX8WNdr7w4gVUJa8aE45od8gz3ao7RIgmYwHx6QiR7Fy+5Rmdag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMuuGF+2QLI2frNgpELWtwVe8y20qfLLcjoP0zDKfHJgivj70oSvhm834q8V+5H9gA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8242672a-a728-4337-aa5e-417c191e2010",
+                            SecurityStamp = "f060c76e-2fe5-42fc-aa96-beefefbc7579",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

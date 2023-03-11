@@ -23,6 +23,18 @@ namespace CafeTap.Areas.Panel.Controllers
         }
 
 
+        [HttpGet]
+        [Route("")]
+        [Route("{name}/{page:int:min(1)}")]
+        public async Task<IActionResult> Search(string name, int page=1)
+        {
+            var query = new GetEmployeesBySearchNameQuery(page, 10, name);
+            var result = await Mediator.Send(query);
+
+            return View(result);
+        }
+
+
         [HttpGet("{id:int:min(1)}")]
         public async Task<IActionResult> GetById(int id)
         {

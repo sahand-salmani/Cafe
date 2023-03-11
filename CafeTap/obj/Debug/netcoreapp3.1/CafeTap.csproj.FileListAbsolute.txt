@@ -205,3 +205,7 @@ D:\PrivetProjects\CafeTap\CafeTap\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\PrivetProjects\CafeTap\CafeTap\bin\Debug\netcoreapp3.1\az\Humanizer.resources.dll
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RestaurantContacts\RestaurantContacts.cshtml.g.cs
 D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RestaurantContacts\Update.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RestaurantMeetings\Index.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RestaurantMeetings\Add.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\RestaurantMeetings\Update.cshtml.g.cs
+D:\PrivetProjects\CafeTap\CafeTap\obj\Debug\netcoreapp3.1\Razor\Areas\Panel\Views\Employees\Search.cshtml.g.cs

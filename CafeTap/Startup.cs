@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using Infrastructure.Services;
 using MediatR;
@@ -38,10 +36,6 @@ namespace CafeTap
             services.AddTransient<IMediator, Mediator>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddIdentityServices();
-
-
-
-
 
         }
 

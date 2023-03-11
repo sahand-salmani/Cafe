@@ -16,6 +16,8 @@ namespace Domain.Models
         public string Note { get; set; }
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
+        [DataType(DataType.DateTime), Required]
+        public DateTime HappensAt { get; set; }
 
     }
 }
