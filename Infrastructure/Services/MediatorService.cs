@@ -1,6 +1,7 @@
 ﻿using System.IO.Compression;
 using System.Reflection;
 using AutoMapper;
+using Infrastructure.ContractPayments.Profiles;
 using Infrastructure.Contracts.Profiles;
 using Infrastructure.Employees.Profiles;
 using Infrastructure.Fails.Profiles;
@@ -34,6 +35,7 @@ namespace Infrastructure.Services
                 c.AddProfile<FailProfile>();
                 c.AddProfile<RestaurantContactProfile>();
                 c.AddProfile<ContractProfile>();
+                c.AddProfile<ContractPaymentProfile>();
             });
             services.AddSingleton<IMapper>(s => config.CreateMapper());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

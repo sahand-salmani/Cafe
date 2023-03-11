@@ -117,7 +117,7 @@
                 <div class="form-group row">
                     <label class="col-form-label col-lg-2">Start Date</label>
                     <div class="col-lg-3">
-                        <input type="text" asp-for="StartsAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
+                        <input type="date" asp-for="StartsAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
                     </div>
                 </div>
                 <span asp-validation-for="StartsAt" class="text-danger"></span>
@@ -126,7 +126,7 @@
                 <div class="form-group row">
                     <label class="col-form-label col-lg-2">Finish Date</label>
                     <div class="col-lg-3">
-                        <input type="text" asp-for="FinishedAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
+                        <input type="date" asp-for="FinishedAt" class="form-control pickadate-accessibility" placeholder="Try me&hellip;">
                     </div>
                 </div>
                 <span asp-validation-for="FinishedAt" class="text-danger"></span>
@@ -134,7 +134,14 @@
                 <div class="form-group row">
                     <label class="col-form-label col-lg-2">Is Approved</label>
                     <div class="col-lg-3">
-                        <input type="checkbox" asp-for="IsApprovedForJob" class="form-check-input-styled-success" checked data-fouc>
+                        @if (Model.IsApprovedForJob)
+                        {
+                            <input type="checkbox" asp-for="IsApprovedForJob" class="form-check-input-styled-success" checked="checked" data-fouc>
+                        }
+                        else
+                        {
+                            <input type="checkbox" asp-for="IsApprovedForJob" class="form-check-input-styled-success" data-fouc>
+                        }
                     </div>
                 </div>
                 <span asp-validation-for="IsApprovedForJob" class="text-danger"></span>

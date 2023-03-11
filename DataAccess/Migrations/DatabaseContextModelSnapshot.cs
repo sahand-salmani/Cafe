@@ -38,9 +38,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
@@ -59,6 +56,32 @@ namespace DataAccess.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Contracts");
+                });
+
+            modelBuilder.Entity("Domain.Models.ContractPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PaidAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractId");
+
+                    b.ToTable("ContractPayments");
                 });
 
             modelBuilder.Entity("Domain.Models.ContractProduct", b =>
@@ -484,7 +507,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = "0f8za25b-t9cb-469f-a165-708677289502",
-                            ConcurrencyStamp = "bee3298a-8499-40c0-a9e2-774ae4580f4e",
+                            ConcurrencyStamp = "efb8a8b9-8baf-4437-bedf-314cbef66fd6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -559,15 +582,15 @@ namespace DataAccess.Migrations
                         {
                             Id = "0f8fad5b-d9cb-469f-a165-70867728950e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "223563e4-0ead-4008-8021-dd05b1a270a7",
+                            ConcurrencyStamp = "a432747a-b7b0-4ae0-9f9a-070abe1007d9",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGDTclGtY/ZXZHu+kmya5UtSbiNjaxLJAInApQ6BFx8BKFAUjXiSbDh08fFtB8ZuPw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECRvIaa2fzVwlLGnX8WNdr7w4gVUJa8aE45od8gz3ao7RIgmYwHx6QiR7Fy+5Rmdag==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ae7c556c-227f-4268-aa28-36defa8fc38a",
+                            SecurityStamp = "8242672a-a728-4337-aa5e-417c191e2010",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -709,6 +732,15 @@ namespace DataAccess.Migrations
                     b.HasOne("Domain.Models.Restaurant", "Restaurant")
                         .WithMany("Contract")
                         .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.ContractPayment", b =>
+                {
+                    b.HasOne("Domain.Models.Contract", "Contract")
+                        .WithMany("ContractPayments")
+                        .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

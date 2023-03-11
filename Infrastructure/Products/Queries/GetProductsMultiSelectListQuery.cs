@@ -12,6 +12,20 @@ namespace Infrastructure.Products.Queries
         {
             Products = products ?? new List<int>();
         }
+
+        public GetProductsMultiSelectListQuery(int id, List<int> products)
+        {
+            Id = id;
+            Products = new List<int>();
+        }
+
+        public GetProductsMultiSelectListQuery(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; set; }
         public List<int> Products { get; set; }
+
     }
 }

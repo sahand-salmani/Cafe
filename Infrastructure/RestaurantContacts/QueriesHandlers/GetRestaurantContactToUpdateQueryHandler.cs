@@ -9,28 +9,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.RestaurantContacts.QueriesHandlers
 {
-    public class GetRestaurantContactToUpdateQueryHandler : IRequestHandler<GetRestaurantContactToUpdateQuery, GetRestaurantContactVm>
+    public class GetRestaurantContactToUpdateQueryHandler : IRequestHandler<GetRestaurantContactToUpdateQuery, UpdateRestaurantContactVm>
     {
         private readonly DatabaseContext _context;
         private readonly IMapper _mapper;
 
-        public GetRestaurantContactToUpdateQueryHandler(DatabaseContext context,IMapper mapper)
+        public GetRestaurantContactToUpdateQueryHandler(DatabaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<GetRestaurantContactVm> Handle(GetRestaurantContactToUpdateQuery request, CancellationToken cancellationToken)
+        public async Task<UpdateRestaurantContactVm> Handle(GetRestaurantContactToUpdateQuery request, CancellationToken cancellationToken)
         {
-            var result = new GetRestaurantContactVm();
+            var rc = await _context.RestaurantContacts.AsNoTracking()
+                .SingleOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
-            var restaurantContact = await _context.RestaurantContacts.Include(r => r.Restaurant)
-                .SingleOrDefaultAsync(r => r.Id == request.Id,cancellationToken);
-            if (restaurantContact is null)
-            {
-                return null;
-            }
-
-            return _mapper.Map<GetRestaurantContactVm>(restaurantContact);
+            return _mapper.Map<UpdateRestaurantContactVm>(rc);
         }
     }
 }

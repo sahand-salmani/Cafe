@@ -10,6 +10,7 @@ namespace Infrastructure.RestaurantContacts.Profiles
         {
             CreateMap<CreateRestaurantContactVm, RestaurantContact>().ReverseMap();
             CreateMap<GetRestaurantContactVm, RestaurantContact>().ReverseMap();
+            CreateMap<UpdateRestaurantContactVm, RestaurantContact>().ReverseMap();
         }
     }
 }

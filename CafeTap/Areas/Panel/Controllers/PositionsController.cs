@@ -95,5 +95,15 @@ namespace CafeTap.Areas.Panel.Controllers
             var result = await Mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }
+
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> CheckPositionExists(string name)
+        {
+            var query = new CheckPositionExistsQuery(name);
+            var result = await Mediator.Send(query);
+
+            return result ? Json($"Position {name} already exists") : Json(true);
+        }
     }
 }

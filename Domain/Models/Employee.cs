@@ -22,7 +22,5 @@ namespace Domain.Models
         public int PositionId { get; set; }
 
         public ICollection<EmployeePayment> EmployeePayments { get; set; }
-
-        // eger mumkunse wekil
     }
 }

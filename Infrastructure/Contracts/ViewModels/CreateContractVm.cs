@@ -15,7 +15,6 @@ namespace Infrastructure.Contracts.ViewModels
 
         [Required, DataType(DataType.Date)]
         public DateTime EndDate { get; set; } = DateTime.Now;
-        public bool IsPaid { get; set; }
         public int RestaurantId { get; set; }
         public int EmployeeId { get; set; }
         public bool Yearly { get; set; }

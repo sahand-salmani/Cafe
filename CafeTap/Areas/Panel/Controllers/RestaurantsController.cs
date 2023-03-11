@@ -20,6 +20,15 @@ namespace CafeTap.Areas.Panel.Controllers
             return View(await Mediator.Send(query));
         }
 
+        [HttpGet]
+        [Route("")]
+        [Route("{page:int:min(1)}")]
+        public async Task<IActionResult> Index2(int page = 1)
+        {
+            var query = new GetAllRestaurantQuery(page, 20);
+            return View(await Mediator.Send(query));
+        }
+
         [HttpGet("{id:int:min(1)}")]
         public async Task<IActionResult> GetById(int id)
         {

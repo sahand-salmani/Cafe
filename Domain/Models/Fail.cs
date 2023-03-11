@@ -15,7 +15,5 @@ namespace Domain.Models
         [DataType(DataType.Date)]
         public DateTime HappenedAt { get; set; }
 
-        //string unvan
-        // note extra large
     }
 }

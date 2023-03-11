@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Infrastructure.RestaurantContacts.Queries
 {
-    public class GetRestaurantContactToUpdateQuery : IRequest<GetRestaurantContactVm>
+    public class GetRestaurantContactToUpdateQuery : IRequest<UpdateRestaurantContactVm>
     {
         public GetRestaurantContactToUpdateQuery(int id)
         {

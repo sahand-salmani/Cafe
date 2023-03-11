@@ -13,12 +13,12 @@ namespace Domain.Models
         public DateTime StartDate { get; set; }
         [Required, DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
-        public bool IsPaid { get; set; } = false;
         public int RestaurantId { get; set; }
         public int EmployeeId { get; set; }
         public Restaurant Restaurant { get; set; }
         public Employee Employee { get; set; }
         public ContractType ContractType { get; set; }
         public ICollection<ContractProduct> ContractProducts { get; set; }
+        public ICollection<ContractPayment> ContractPayments { get; set; }
     }
 }
