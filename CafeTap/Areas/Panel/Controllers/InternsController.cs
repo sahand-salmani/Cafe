@@ -41,7 +41,8 @@ namespace CafeTap.Areas.Panel.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            var model = new CreateInternCommand();
+            return View(model);
         }
 
         [HttpPost]

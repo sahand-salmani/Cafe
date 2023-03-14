@@ -1,6 +1,5 @@
-using System.Reflection;
+using Infrastructure.Common;
 using Infrastructure.Services;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,22 +19,27 @@ namespace CafeTap
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.Configure<RequestLocalizationOptions>(options =>
-            //{
-            //    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("az-Latn-AZ");
-            //    options.SupportedCultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("az-Latn-AZ") };
-            //});
 
-            services.AddMvc();
+            services.AddMvcServices();
             services.AddEntityFrameworkSqlServer();
             services.AddServicesLifeSpan();
             services.AddDatabaseService(Configuration);
-            services.AddAuthorization();
+            services.AddIdentityServices();
+
+            services.AddAuthorization(option =>
+            {
+                foreach (var claim in ClaimStore.Claims)
+                {
+                    option.AddPolicy(claim.Value, c => c.RequireClaim(claim.Type));
+                }
+            });
+
+
             services.AddResponseCompression();
             services.AddExtraServices();
-            services.AddTransient<IMediator, Mediator>();
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddIdentityServices();
+            
+
+            
 
         }
 
@@ -55,8 +59,8 @@ namespace CafeTap
             app.UseResponseCompression();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseRequestLocalization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

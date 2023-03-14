@@ -26,8 +26,29 @@ using Infrastructure.Common;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using System.Globalization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using Humanizer;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using Humanizer.Localisation;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6799024c2acae071f24edeaa22375aa75456c6bb", @"/Areas/Panel/Views/Fails/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"79cf6dc823089d72ce80dc62fc585c8fd32c9a89", @"/Areas/Panel/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ec660172a495f6b0e945585a2f1953fdc4cd613", @"/Areas/Panel/Views/_ViewImports.cshtml")]
     public class Areas_Panel_Views_Fails_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DataAccess.Pagination.PaginatedList<Fail>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_Validation", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -83,7 +104,7 @@ using Infrastructure.Common;
 #line default
 #line hidden
 #nullable disable
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6799024c2acae071f24edeaa22375aa75456c6bb7099", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6799024c2acae071f24edeaa22375aa75456c6bb7633", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -98,7 +119,7 @@ using Infrastructure.Common;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6799024c2acae071f24edeaa22375aa75456c6bb8215", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6799024c2acae071f24edeaa22375aa75456c6bb8749", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -221,7 +242,7 @@ using Infrastructure.Common;
 
                             <div class=""dropdown-menu dropdown-menu-right"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb13281", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb13815", async() => {
                 WriteLiteral("<i class=\"icon-pencil\"></i>Edit");
             }
             );
@@ -350,7 +371,7 @@ WriteAttributeValue("", 3432, modalCounter, 3432, 13, false);
 
                 <div class=""modal-footer"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb19646", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb20180", async() => {
                 WriteLiteral("\r\n                        <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Close</button>\r\n                        <button type=\"submit\" class=\"btn bg-danger\">Delete</button>\r\n                    ");
             }
             );
@@ -415,7 +436,7 @@ WriteAttributeValue("", 3432, modalCounter, 3432, 13, false);
 #line hidden
 #nullable disable
             WriteLiteral("            <li class=\"page-item active\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb23784", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6799024c2acae071f24edeaa22375aa75456c6bb24318", async() => {
 #nullable restore
 #line 123 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\Fails\Index.cshtml"
                                                                                                 Write(i);
@@ -489,6 +510,8 @@ WriteAttributeValue("", 3432, modalCounter, 3432, 13, false);
             WriteLiteral("</ul>");
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public AzCultureInfo AzCulture { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

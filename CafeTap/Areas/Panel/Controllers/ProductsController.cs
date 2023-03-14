@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
 using DataAccess.Pagination;
 using Domain.Models;
@@ -25,6 +26,16 @@ namespace CafeTap.Areas.Panel.Controllers
 
             return View(result);
 
+        }
+
+
+        [HttpGet]
+        [Route("")]
+        [Route("{name}/{page:int:min(1)}")]
+        public async Task<IActionResult> SearchByName(string name, int page = 1)
+        {
+            var query = new GetProductsSearchByNameQuery(name, page, 10);
+            return View(await Mediator.Send(query));
         }
 
         [HttpGet]

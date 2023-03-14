@@ -28,6 +28,10 @@ namespace CafeTap.Areas.Panel.Controllers
         [Route("{name}/{page:int:min(1)}")]
         public async Task<IActionResult> Search(string name, int page=1)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return RedirectToAction(nameof(Index));
+            }
             var query = new GetEmployeesBySearchNameQuery(page, 10, name);
             var result = await Mediator.Send(query);
 

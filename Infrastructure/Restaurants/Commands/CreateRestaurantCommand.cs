@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Infrastructure.Common;
+﻿using Infrastructure.Common;
 using Infrastructure.Restaurants.ViewModels;
 using MediatR;
 

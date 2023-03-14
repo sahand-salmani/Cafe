@@ -14,6 +14,34 @@ namespace CafeTap.Areas.Panel.Controllers
     [Route("[area]/[controller]/[action]")]
     public class ContractsController : MyController
     {
+        [HttpGet]
+        [Route("")]
+        [Route("{page:int:min(1)}")]
+        public async Task<IActionResult> Index(int page = 1)
+        {
+            var model = new GetAllContractsQuery(page, 20);
+            var result = await Mediator.Send(model);
+
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult SearchByCity() => View();
+
+        [HttpGet]
+        [Route("")]
+        [Route("{name}/{page:int:min(1)}")]
+        public async Task<IActionResult> SearchByCityName(string name, int page = 1)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return RedirectToAction(nameof(SearchByCity));
+            }
+            var query = new GetContractsOfCityBySearchQuery(name, page, 20);
+            var result = await Mediator.Send(query);
+
+            return View(result);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Add(int id)

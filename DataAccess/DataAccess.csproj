@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20230311185943_NewSpendChanges.cs" />
+    <Compile Remove="Migrations\20230311185943_NewSpendChanges.Designer.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.20" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.20">

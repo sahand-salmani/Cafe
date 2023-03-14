@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Infrastructure.ContractPayments.ViewModels;
+﻿using Infrastructure.ContractPayments.ViewModels;
 using MediatR;
 
 namespace Infrastructure.ContractPayments.Queries

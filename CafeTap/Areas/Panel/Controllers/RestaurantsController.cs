@@ -20,16 +20,23 @@ namespace CafeTap.Areas.Panel.Controllers
             return View(await Mediator.Send(query));
         }
 
+
         [HttpGet]
         [Route("")]
-        [Route("{page:int:min(1)}")]
-        public async Task<IActionResult> Index2(int page = 1)
+        [Route("{name}/{page:int:min(1)}")]
+        public async Task<IActionResult> SearchByName(string name, int page = 1)
         {
-            var query = new GetAllRestaurantQuery(page, 20);
-            return View(await Mediator.Send(query));
+            if (string.IsNullOrEmpty(name))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var query = new GetAllRestaurantSearchByNameQuery(name, page, 10);
+            var result = await Mediator.Send(query);
+
+            return View(result);
         }
 
-        [HttpGet("{id:int:min(1)}")]
+        [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetRestaurantByIdQuery(id);
@@ -63,7 +70,7 @@ namespace CafeTap.Areas.Panel.Controllers
             }
 
             ErrorHandler();
-            return View(command);
+            return View(model);
         }
 
 

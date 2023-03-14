@@ -25,7 +25,12 @@ namespace Infrastructure.Restaurants.QueryHandlers
             var restaurant = await _context.Restaurants
                 .AsNoTracking()
                 .Include(e => e.Contract)
+                .ThenInclude(e => e.Employee)
+                .Include(e => e.Contract)
+                .ThenInclude(e => e.ContractPayments)
                 .Include(e => e.Stants)
+                .Include(e => e.RestaurantMeetings)
+                .Include(e => e.RestaurantContacts)
                 .SingleOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
             if (restaurant is null)

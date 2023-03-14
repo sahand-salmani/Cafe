@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using CafeTap.Controllers.Base;
+using Infrastructure.Claims.Queries;
 using Infrastructure.Roles.Commands;
 using Infrastructure.Roles.Queries;
 using Infrastructure.Roles.ViewModels;
@@ -83,6 +85,45 @@ namespace CafeTap.Areas.Panel.Controllers
             if (!result.Success)
             {
                 return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AddClaims(string id, string name)
+        {
+            var model = new RoleClaimsVm();
+            var query = new GetAllClaimsMultiSelectListQuery(id);
+            var result = await Mediator.Send(query);
+            model.Claims = result;
+            model.RoleId = id;
+            model.RoleName = name;
+            model.ClaimsValues = (List<string>)result.SelectedValues;
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddClaims(RoleClaimsVm model)
+        {
+            var query = new GetAllClaimsMultiSelectListQuery(model.RoleId);
+            var multiSelect = await Mediator.Send(query);
+            model.Claims = multiSelect;
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var command = new UpdateRoleClaimsCommand(model);
+            var result = await Mediator.Send(command);
+
+            if (!result.Success)
+            {
+                AddError(result.Errors);
+                return View(model);
             }
 
             return RedirectToAction(nameof(Index));

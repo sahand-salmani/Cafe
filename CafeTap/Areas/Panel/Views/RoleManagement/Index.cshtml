@@ -52,6 +52,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a asp-controller="RoleManagement" asp-action="Edit" asp-route-roleName="@role.Name" class="dropdown-item"><i class="icon-pencil"></i>Edit</a>
+                                    <a asp-controller="RoleManagement" asp-action="AddClaims" asp-route-name="@role.Name" asp-route-id="@role.Id" class="dropdown-item"><i class="icon-pencil"></i>Change Access</a>
                                     <a data-toggle="modal" data-target="#modal_theme_danger-@counter" class="dropdown-item"><i class="icon-eraser3"></i>Delete</a>
                                     @{ 
                                         counter += 1;

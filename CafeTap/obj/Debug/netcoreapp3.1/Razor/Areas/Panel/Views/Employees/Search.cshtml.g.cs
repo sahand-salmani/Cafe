@@ -26,8 +26,29 @@ using Infrastructure.Common;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using System.Globalization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using Humanizer;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\_ViewImports.cshtml"
+using Humanizer.Localisation;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e88", @"/Areas/Panel/Views/Employees/Search.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"79cf6dc823089d72ce80dc62fc585c8fd32c9a89", @"/Areas/Panel/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ec660172a495f6b0e945585a2f1953fdc4cd613", @"/Areas/Panel/Views/_ViewImports.cshtml")]
     public class Areas_Panel_Views_Employees_Search : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DataAccess.Pagination.PaginatedList<Employee>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Search", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -83,7 +104,7 @@ using Infrastructure.Common;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"card\">\r\n    <div class=\"card-body\">\r\n        <h5 class=\"mb-3\">Website search results</h5>\r\n\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e887467", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e888001", async() => {
                 WriteLiteral(@"
             <div class=""input-group mb-3"">
                 <div class=""form-group-feedback form-group-feedback-left"">
@@ -244,7 +265,7 @@ using Infrastructure.Common;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8816124", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8816658", async() => {
                 WriteLiteral("Edit<i class=\"icon-pencil3 ml-2\"></i>");
             }
             );
@@ -353,7 +374,7 @@ WriteAttributeValue("", 5710, modalCounter, 5710, 13, false);
 
                 <div class=""modal-footer"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8821723", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8822257", async() => {
                 WriteLiteral("\r\n                        <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Close</button>\r\n                        <button type=\"submit\" class=\"btn bg-danger\">Delete</button>\r\n                    ");
             }
             );
@@ -418,7 +439,7 @@ WriteAttributeValue("", 5710, modalCounter, 5710, 13, false);
 #line hidden
 #nullable disable
             WriteLiteral("            <li class=\"page-item active\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8825893", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0eb8973c7a9e9c89e0b6a652ac9c42e26d75e8826427", async() => {
 #nullable restore
 #line 157 "D:\PrivetProjects\CafeTap\CafeTap\Areas\Panel\Views\Employees\Search.cshtml"
                                                                                                 Write(i);
@@ -492,6 +513,8 @@ WriteAttributeValue("", 5710, modalCounter, 5710, 13, false);
             WriteLiteral("</ul>");
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public AzCultureInfo AzCulture { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

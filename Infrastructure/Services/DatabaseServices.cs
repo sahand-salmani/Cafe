@@ -21,6 +21,7 @@ namespace Infrastructure.Services
                     });
                 options.UseInternalServiceProvider(sp);
             });
+
             return services;
         }
     }

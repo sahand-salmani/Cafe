@@ -10,6 +10,7 @@ namespace Infrastructure.ContractPayments.Profiles
         {
             CreateMap<ContractPayment, CreateContractPaymentVm>().ReverseMap();
             CreateMap<UpdateContractPaymentVm, ContractPayment>().ReverseMap();
+            CreateMap<GetContractPaymentVm, ContractPayment>().ReverseMap();
         }
     }
 }

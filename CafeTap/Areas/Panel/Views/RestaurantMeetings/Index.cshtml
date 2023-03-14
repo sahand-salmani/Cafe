@@ -57,8 +57,9 @@
                             <td>@Model[i].Restaurant.Name</td>
                             <td>@Model[i].Person</td>
                             <td>@Model[i].Subject</td>
-                            <td>@Model[i].HappensAt.ToString("d/M/yyyy")</td>
-                            <td>@((Model[i].HappensAt - DateTime.Now).Humanize(6, maxUnit: TimeUnit.Month,minUnit:TimeUnit.Hour, culture: cultInfo))</td>
+                            @*<td>@Model[i].HappensAt.ToString("d/M/yyyy")</td>*@
+                            <td>@Model[i].HappensAt.ToString("f",cultInfo)</td>
+                            <td>@((Model[i].HappensAt - DateTime.Now).Humanize(6, maxUnit: TimeUnit.Month,minUnit:TimeUnit.Minute, culture: cultInfo))</td>
                             <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">

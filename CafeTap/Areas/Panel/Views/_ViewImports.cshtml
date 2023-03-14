@@ -2,4 +2,11 @@
 @addTagHelper *,AuthoringTagHelpers
 
 @using Domain.Models
-@using Infrastructure.Common 
+@using Infrastructure.Common
+@using System.Globalization
+@using Humanizer
+@using Humanizer.Localisation
+
+
+@inject AzCultureInfo AzCulture;
+

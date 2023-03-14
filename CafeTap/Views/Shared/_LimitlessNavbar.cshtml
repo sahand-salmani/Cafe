@@ -1,6 +1,5 @@
 ﻿<ul class="nav nav-sidebar" data-nav-type="accordion">
 
-    <!-- Main -->
     <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
     <li class="nav-item">
         <a asp-controller="Dashboard" asp-action="Index" asp-area="Panel" class="nav-link active">
@@ -10,16 +9,29 @@
             </span>
         </a>
     </li>
+    @if (User.HasClaim(e => e.Value == Restaurant))
+    {
+        <li class="nav-item nav-item-submenu">
+            <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Restaurants</span></a>
+
+            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                <li class="nav-item"><a asp-controller="Restaurants" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
+                <li class="nav-item"><a asp-controller="Restaurants" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
+            </ul>
+        </li>
+    }
+
     <li class="nav-item nav-item-submenu">
-        <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Restaurants</span></a>
+        <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Contracts</span></a>
 
         <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-            <li class="nav-item"><a asp-controller="Restaurants" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
-            <li class="nav-item"><a asp-controller="Restaurants" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
+            <li class="nav-item"><a asp-controller="Contracts" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
+            <li class="nav-item"><a asp-controller="Contracts" asp-action="SearchByCity" asp-area="Panel" class="nav-link">Search by city</a></li>
         </ul>
     </li>
+
     <li class="nav-item nav-item-submenu">
-        <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Restaurants</span></a>
+        <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Meetings</span></a>
 
         <ul class="nav nav-group-sub" data-submenu-title="Layouts">
             <li class="nav-item"><a asp-controller="RestaurantMeetings" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
@@ -33,12 +45,40 @@
             <li class="nav-item"><a asp-controller="Products" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
         </ul>
     </li>
+
+    <li class="nav-item nav-item-submenu">
+        <a href="#" class="nav-link"><i class="icon-file-upload"></i> <span>Stants</span></a>
+
+        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+            <li class="nav-item"><a asp-controller="Stants" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
+            <li class="nav-item"><a asp-controller="Stants" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
+        </ul>
+    </li>
+
+
     <li class="nav-item nav-item-submenu">
         <a href="#" class="nav-link"><i class="icon-books"></i> <span>Employees</span></a>
 
         <ul class="nav nav-group-sub" data-submenu-title="Layouts">
             <li class="nav-item"><a asp-controller="Employees" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
             <li class="nav-item"><a asp-controller="Employees" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
+        </ul>
+    </li>
+
+    <li class="nav-item nav-item-submenu">
+        <a href="#" class="nav-link"><i class="icon-books"></i> <span>Spends</span></a>
+
+        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+            <li class="nav-item"><a asp-controller="Spends" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
+            <li class="nav-item"><a asp-controller="Spends" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
+        </ul>
+    </li>
+
+    <li class="nav-item nav-item-submenu">
+        <a href="#" class="nav-link"><i class="icon-books"></i> <span>Employee Payments</span></a>
+
+        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+            <li class="nav-item"><a asp-controller="EmployeePayments" asp-action="Index" asp-area="Panel" class="nav-link">List</a></li>
         </ul>
     </li>
 
@@ -60,7 +100,7 @@
             <li class="nav-item"><a asp-controller="Positions" asp-action="Add" asp-area="Panel" class="nav-link">Add</a></li>
         </ul>
     </li>
-    
+
     <li class="nav-item nav-item-submenu">
         <a href="#" class="nav-link"><i class="icon-books"></i> <span>Interns</span></a>
 

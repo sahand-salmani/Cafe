@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Infrastructure.Common;
+﻿using Infrastructure.Common;
 using MediatR;
 
 namespace Infrastructure.Contracts.Commands

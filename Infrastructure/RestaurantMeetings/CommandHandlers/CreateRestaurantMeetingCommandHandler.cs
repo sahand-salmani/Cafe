@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Constants;
@@ -31,8 +28,10 @@ namespace Infrastructure.RestaurantMeetings.CommandHandlers
         }
         public async Task<OperationResult<int>> Handle(CreateRestaurantMeetingCommand request, CancellationToken cancellationToken)
         {
-            var result = new OperationResult<int>();
 
+            request.Model.HappensAt = request.Model.HappensAt.ToAzDateTime();
+
+            var result = new OperationResult<int>();
             var restaurantExists = await _context.Restaurants.AsNoTracking()
                 .AnyAsync(e => e.Id == request.Model.RestaurantId, cancellationToken);
 
@@ -40,6 +39,7 @@ namespace Infrastructure.RestaurantMeetings.CommandHandlers
             {
                 return result.AddError("Restaurant was not found");
             }
+
 
             var newMeeting = _mapper.Map<RestaurantMeeting>(request.Model);
 

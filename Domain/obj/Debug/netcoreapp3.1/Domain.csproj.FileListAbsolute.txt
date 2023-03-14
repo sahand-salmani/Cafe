@@ -7,3 +7,4 @@ D:\PrivetProjects\CafeTap\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
 D:\PrivetProjects\CafeTap\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
 D:\PrivetProjects\CafeTap\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 D:\PrivetProjects\CafeTap\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+D:\PrivetProjects\CafeTap\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.AssemblyReference.cache

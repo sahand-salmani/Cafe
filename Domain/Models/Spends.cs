@@ -9,7 +9,8 @@ namespace Domain.Models
     {
         [Required]
         public string Name { get; set; }
-        public DateTime SpentAt { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        public DateTime SpentAt { get; set; }
         [MaxLength(2080)]
         public string Note { get; set; }
 

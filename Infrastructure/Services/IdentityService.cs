@@ -20,6 +20,7 @@ namespace Infrastructure.Services
                 options.Stores.MaxLengthForKeys = 128;
             }).AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
+
             services.AddAuthentication();
             return services;
         }

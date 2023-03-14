@@ -1,9 +1,368 @@
-﻿@model Infrastructure.Restaurants.ViewModels.GetRestaurantVm
+﻿@model Infrastructure.Restaurants.ViewModels.GetRestaurantVm;
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Restaurant Details";
+    ViewData["MainTitle"] = "Restaurants";
+    ViewData["SubTitle"] = "Details";
+}
+@section scripts
+{
+    <script src="~/Limitless/global_assets/js/plugins/ui/fab.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/ui/sticky.min.js"></script>
+    <script src="~/Limitless/global_assets/js/plugins/ui/prism.min.js"></script>
+    <script src="~/Limitless/global_assets/js/demo_pages/extra_fab.js"></script>
+
+}
+<partial name="_Messages" />
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Archive Types</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <p class="mb-4">Adding Archive type to the website</p>
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <fieldset class="mb-3">
+                <legend class="text-uppercase font-size-sm font-weight-bold">Restaurants</legend>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Restaurant Name</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" disabled asp-for="@Model.Name">
+                    </div>
+                </div>
 
 
-<h1>@Model.Name</h1>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Address</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" disabled asp-for="@Model.Address">
+                    </div>
+                </div>
 
 
-<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
-    <button type="submit">Delete</button>
-</form>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Phone number </label>
+                    <div class="col-lg-5">
+                        <input class="form-control" disabled asp-for="@Model.PhoneNumber">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">City </label>
+                    <div class="col-lg-5">
+                        <input class="form-control" disabled asp-for="@Model.City">
+                    </div>
+                </div>
+
+
+                @*<button type="submit" class="btn bg-blue ml-3">Add<i class="icon-paperplane ml-2"></i></button>*@
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h4 class="card-title">Contracts</h4>
+    </div>
+
+    <table class="table datatable-basic table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Contract Name</th>
+                <th>Employee</th>
+                <th>Starts</th>
+                <th>Ends</th>
+                <th>Remains</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var j = 1;
+            }
+            @foreach (var contract in Model.Contract)
+            {
+                <tr>
+                    <td>@(j++)</td>
+                    <td>@contract.Name</td>
+                    <td>@contract.Employee.FullName</td>
+                    <td>@contract.StartDate.ToString("D", AzCulture.AzCulture())</td>
+                    <td>@contract.EndDate.ToString("D", AzCulture.AzCulture())</td>
+                    <th>@((contract.EndDate - contract.StartDate ).Humanize(4,maxUnit: TimeUnit.Year,minUnit:TimeUnit.Hour, culture:AzCulture.AzCulture()))</th>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a asp-controller="ContractPayments" asp-action="ContractPayments" asp-route-id="@contract.Id" asp-route-page="1" class="dropdown-item"><i class="icon-cash"></i>Payments</a>
+                                    <a asp-controller="ContractPayments" asp-action="Add" asp-route-id="@contract.Id" class="dropdown-item"><i class="icon-add"></i>Add Payment</a>
+                                    <a asp-controller="Contracts" asp-action="Update" asp-route-id="@contract.Id" class="dropdown-item"><i class="icon-pencil"></i>Edit</a>
+                                    <a data-toggle="modal" data-target="#modal_theme_danger-@contract.Id-contract" class="dropdown-item"><i class="icon-eraser3"></i>Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Bordered table -->
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Bordered table</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        The <code>DataTables</code> is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table. DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function. Searching, ordering, paging etc goodness will be immediately added to the table, as shown in this example. <strong>Datatables support all available table styling.</strong>
+    </div>
+
+    <table class="table datatable-basic table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Restaurant</th>
+                <th>Contract Name</th>
+                <th>Paid At</th>
+                <th>Amount</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var z = 1;
+            }
+            @foreach (var contract in Model.Contract)
+            {
+                @foreach (var payment in contract.ContractPayments)
+                {
+                    <tr>
+                        <td>@(z++)</td>
+                        <td>@Model.Name</td>
+                        <td>@contract.Name</td>
+                        <td>@payment.PaidAt.ToString("D", AzCulture.AzCulture())</td>
+                        <td>@payment.Amount.ToString("C", AzCulture.AzCulture())</td>
+                        <td class="text-center">
+                            <div class="list-icons">
+                                <div class="dropdown">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a asp-controller="ContractPayments" asp-action="Update" asp-route-id="@payment.Id" class="dropdown-item"><i class="icon-pencil"></i>Edit</a>
+                                        <a data-toggle="modal" data-target="#modal_theme_danger-@payment.Id-payment" class="dropdown-item"><i class="icon-eraser3"></i>Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<!-- /bordered table -->
+<!-- Bordered table -->
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Bordered table</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        The <code>DataTables</code> is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table. DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function. Searching, ordering, paging etc goodness will be immediately added to the table, as shown in this example. <strong>Datatables support all available table styling.</strong>
+    </div>
+
+    <table class="table datatable-basic table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Restaurant</th>
+                <th>Person</th>
+                <th>Subject</th>
+                <th>At</th>
+                <th>Remains</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.RestaurantMeetings.Count; i++)
+            {
+                <tr>
+                    <td>@(i+1)</td>
+                    <td>@Model.RestaurantMeetings[i].Restaurant.Name</td>
+                    <td>@Model.RestaurantMeetings[i].Person</td>
+                    <td>@Model.RestaurantMeetings[i].Subject</td>
+                    @*<td>@Model[i].HappensAt.ToString("d/M/yyyy")</td>*@
+                    <td>@Model.RestaurantMeetings[i].HappensAt.ToString("f", AzCulture.AzCulture())</td>
+                    <td>@((Model.RestaurantMeetings[i].HappensAt - DateTime.Now).Humanize(6, maxUnit: TimeUnit.Month,minUnit:TimeUnit.Minute, culture: AzCulture.AzCulture()))</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a asp-controller="RestaurantMeetings" asp-action="Update" asp-route-id="@Model.RestaurantMeetings[i].Id" class="dropdown-item"><i class="icon-pencil"></i>Edit</a>
+                                    <a data-toggle="modal" data-target="#modal_theme_danger-@Model.RestaurantMeetings[i].Id-meeting" class="dropdown-item"><i class="icon-eraser3"></i>Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+<!-- /bordered table -->
+
+
+
+@foreach (var rm in Model.RestaurantMeetings)
+{
+    <div id="modal_theme_danger-@rm.Id-meeting" class="modal fade" tabindex="-1">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h6 class="modal-title">Deleting position @rm.Person</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h6 class="font-weight-semibold">Important Note!!!</h6>
+                    <p>You are about to delete role : @rm.Person. You can not delete this position as long as you have users who posses this role. If you want to delete this role you have to remove all users from this role first. </p>
+
+                    <hr>
+
+                    <h6 class="font-weight-semibold">Related data information</h6>
+                    <p>Will add related data to this part later</p>
+                </div>
+
+                <div class="modal-footer">
+                    <form asp-action="Delete" asp-controller="RestaurantMeetings" asp-area="Panel" asp-route-id="@rm.Id" method="post">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+@if (Model != null)
+{
+    @foreach (var contract in Model.Contract)
+    {
+        <div id="modal_theme_danger-@contract.Id-contract" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h6 class="modal-title">Deleting position @contract.Name</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <h6 class="font-weight-semibold">Important Note!!!</h6>
+                        <p>You are about to delete role : @contract.Name. You can not delete this position as long as you have users who posses this role. If you want to delete this role you have to remove all users from this role first. </p>
+
+                        <hr>
+
+                        <h6 class="font-weight-semibold">Related data information</h6>
+                        <p>Will add related data to this part later</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <form asp-action="Delete" asp-controller="Contracts" asp-area="Panel" asp-route-id="@contract.Id" method="post">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn bg-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+
+@if (Model != null)
+{
+
+    @foreach (var c in Model.Contract)
+    {
+        @foreach (var cp in c.ContractPayments)
+        {
+            <div id="modal_theme_danger-@cp.Id-payment" class="modal fade" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h6 class="modal-title">Deleting position @c.Name</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <h6 class="font-weight-semibold">Important Note!!!</h6>
+                            <p>You are about to delete role : @c.Name. You can not delete this position as long as you have users who posses this role. If you want to delete this role you have to remove all users from this role first. </p>
+
+                            <hr>
+
+                            <h6 class="font-weight-semibold">Related data information</h6>
+                            <p>Will add related data to this part later</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <form asp-action="Delete" asp-controller="ContractPayments" asp-area="Panel" asp-route-id="@cp.Id" method="post">
+                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn bg-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

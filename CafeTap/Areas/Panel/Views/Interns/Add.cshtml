@@ -2,8 +2,8 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Add Employee";
-    ViewData["MainTitle"] = "Employee";
+    ViewData["Title"] = "Add Intern";
+    ViewData["MainTitle"] = "Interns";
     ViewData["SubTitle"] = "Add";
 }
 @section scripts
@@ -55,7 +55,7 @@
 }
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Archive Types</h5>
+        <h5 class="card-title">Add Intern</h5>
         <div class="header-elements">
             <div class="list-icons">
                 <a class="list-icons-item" data-action="collapse"></a>
@@ -79,6 +79,14 @@
                     </div>
                 </div>
                 <span asp-validation-for="Name" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">University</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" asp-for="University">
+                    </div>
+                </div>
+                <span asp-validation-for="University" class="text-danger"></span>
 
                 <div class="form-group row">
                     <label class="col-form-label col-lg-2">Position</label>

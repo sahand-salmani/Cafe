@@ -5,7 +5,6 @@ using DataAccess.Database;
 using DataAccess.Persistence;
 using Infrastructure.Common;
 using Infrastructure.RestaurantMeetings.Commands;
-using Infrastructure.Restaurants.Commands;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,5 +1,4 @@
 ﻿using Infrastructure.Contracts.ViewModels;
-using Infrastructure.Employees.ViewModels;
 using MediatR;
 
 namespace Infrastructure.Contracts.Queries
